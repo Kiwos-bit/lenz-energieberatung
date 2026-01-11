@@ -121,10 +121,3 @@ a,
 button {
   transition: all 0.2s ease-in-out;
 }
-
-/* Image optimization */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
