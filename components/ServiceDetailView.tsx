@@ -1,111 +1,122 @@
 
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, FileText, Info, Euro, Calendar, Plus, Minus, TrendingUp, ShieldCheck, HelpCircle, ChevronRight, RefreshCcw, Calculator, Zap } from 'lucide-react';
-import { ServiceDetail, CONTACT_INFO } from '../constants';
+import { ServiceDetail, CONTACT_INFO, SERVICES } from '../constants';
 
-interface ServiceDetailViewProps {
-  service: ServiceDetail;
-  onBack: () => void;
-}
-
-const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service, onBack }) => {
+const ServiceDetailView: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const service = SERVICES.find(s => s.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Inject Service & Breadcrumb Schema
-    const existingSchema = document.getElementById('service-schema');
-    if (existingSchema) existingSchema.remove();
+    if (service) {
+      // Inject Service & Breadcrumb Schema
+      const existingSchema = document.getElementById('service-schema');
+      if (existingSchema) existingSchema.remove();
 
-    const existingBreadcrumb = document.getElementById('breadcrumb-schema');
-    if (existingBreadcrumb) existingBreadcrumb.remove();
+      const existingBreadcrumb = document.getElementById('breadcrumb-schema');
+      if (existingBreadcrumb) existingBreadcrumb.remove();
 
-    const serviceSchema = {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": service.title,
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Lenz Energieberatung",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Düsseldorf",
-          "postalCode": "40227"
-        }
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Düsseldorf"
-      },
-      "description": service.longDescription
-    };
-
-    const breadcrumbSchema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Startseite",
-          "item": "https://lenz-energieberatung.com"
+      const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": service.title,
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Lenz Energieberatung",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Düsseldorf",
+            "postalCode": "40227"
+          }
         },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Leistungen",
-          "item": "https://lenz-energieberatung.com/#leistungen"
+        "areaServed": {
+          "@type": "City",
+          "name": "Düsseldorf"
         },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": service.title,
-          "item": `https://lenz-energieberatung.com/#${service.id}`
-        }
-      ]
-    };
+        "description": service.longDescription
+      };
 
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": service.faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    };
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://lenz-energieberatung.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Leistungen",
+            "item": "https://lenz-energieberatung.com/#leistungen"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": service.title,
+            "item": `https://lenz-energieberatung.com/leistungen/${service.id}`
+          }
+        ]
+      };
 
-    const scriptS = document.createElement('script');
-    scriptS.id = 'service-schema';
-    scriptS.type = 'application/ld+json';
-    scriptS.text = JSON.stringify(serviceSchema);
-    document.head.appendChild(scriptS);
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": service.faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      };
 
-    const scriptB = document.createElement('script');
-    scriptB.id = 'breadcrumb-schema';
-    scriptB.type = 'application/ld+json';
-    scriptB.text = JSON.stringify(breadcrumbSchema);
-    document.head.appendChild(scriptB);
+      const scriptS = document.createElement('script');
+      scriptS.id = 'service-schema';
+      scriptS.type = 'application/ld+json';
+      scriptS.text = JSON.stringify(serviceSchema);
+      document.head.appendChild(scriptS);
 
-    const scriptF = document.createElement('script');
-    scriptF.id = 'faq-schema';
-    scriptF.type = 'application/ld+json';
-    scriptF.text = JSON.stringify(faqSchema);
-    document.head.appendChild(scriptF);
+      const scriptB = document.createElement('script');
+      scriptB.id = 'breadcrumb-schema';
+      scriptB.type = 'application/ld+json';
+      scriptB.text = JSON.stringify(breadcrumbSchema);
+      document.head.appendChild(scriptB);
 
-    return () => {
-      const s = document.getElementById('service-schema');
-      if (s) s.remove();
-      const b = document.getElementById('breadcrumb-schema');
-      if (b) b.remove();
-      const f = document.getElementById('faq-schema');
-      if (f) f.remove();
-    };
+      const scriptF = document.createElement('script');
+      scriptF.id = 'faq-schema';
+      scriptF.type = 'application/ld+json';
+      scriptF.text = JSON.stringify(faqSchema);
+      document.head.appendChild(scriptF);
+
+      return () => {
+        const s = document.getElementById('service-schema');
+        if (s) s.remove();
+        const b = document.getElementById('breadcrumb-schema');
+        if (b) b.remove();
+        const f = document.getElementById('faq-schema');
+        if (f) f.remove();
+      };
+    }
   }, [service]);
+
+  if (!service) {
+    return (
+      <div className="pt-32 pb-24 text-center">
+        <h1 className="text-2xl font-bold mb-4">Leistung nicht gefunden</h1>
+        <button onClick={() => navigate('/')} className="text-emerald-600 font-bold">Zurück zur Startseite</button>
+      </div>
+    );
+  }
 
   const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -119,7 +130,7 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service, onBack }
     <div className="pt-24 pb-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
-          onClick={onBack}
+          onClick={() => navigate('/')}
           className="inline-flex items-center gap-2 text-slate-500 hover:text-emerald-600 font-medium mb-12 transition-colors group"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />

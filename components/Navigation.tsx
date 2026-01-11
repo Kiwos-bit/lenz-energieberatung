@@ -1,18 +1,15 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Leaf, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO, SERVICES, ServiceDetail } from '../constants';
 
-interface NavigationProps {
-  onHome: () => void;
-  onSelectService: (service: ServiceDetail) => void;
-  onBlog: () => void;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ onHome, onSelectService, onBlog }) => {
+const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -25,40 +22,51 @@ const Navigation: React.FC<NavigationProps> = ({ onHome, onSelectService, onBlog
   }, []);
 
   const navLinks = [
-    { name: 'Leistungen', href: '#leistungen', hasDropdown: true },
-    { name: 'Ablauf', href: '#ablauf' },
-    { name: 'Über mich', href: '#ueber-mich' },
-    { name: 'Blog', action: onBlog },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Kontakt', href: '#kontakt' },
+    { name: 'Leistungen', href: '/#leistungen', hasDropdown: true },
+    { name: 'Ablauf', href: '/#ablauf' },
+    { name: 'Über mich', href: '/#ueber-mich' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'FAQ', href: '/#faq' },
+    { name: 'Kontakt', href: '/#kontakt' },
   ];
 
   const handleLinkClick = (href: string) => {
-    onHome();
     setIsOpen(false);
     setIsDropdownOpen(false);
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
+
+    if (href.startsWith('/#')) {
+      const targetId = href.split('#')[1];
+      if (location.pathname === '/') {
+        const element = document.getElementById(targetId);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      navigate(href);
+    }
   };
 
-  const handleServiceSelect = (service: ServiceDetail) => {
-    onSelectService(service);
+  const handleServiceSelect = (serviceId: string) => {
+    navigate(`/leistungen/${serviceId}`);
     setIsOpen(false);
     setIsDropdownOpen(false);
   };
 
-  // WhatsApp Link Setup
   const whatsappLink = `https://wa.me/4915736533337?text=${encodeURIComponent('Hallo Herr Lenz, ich habe Ihre Website besucht und würde mich gerne über eine Energieberatung informieren.')}`;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
-          <button 
-            onClick={onHome}
+          <Link
+            to="/"
             className="flex-shrink-0 flex items-center gap-3 outline-none group"
+            onClick={() => setIsOpen(false)}
           >
             <div className="relative w-10 h-10 sm:w-11 sm:h-11 flex-shrink-0">
               <div className="absolute inset-0 bg-emerald-600 rounded-xl rotate-3 group-hover:rotate-6 transition-transform shadow-lg shadow-emerald-200/50" />
@@ -82,7 +90,7 @@ const Navigation: React.FC<NavigationProps> = ({ onHome, onSelectService, onBlog
                 </span>
               </div>
             </div>
-          </button>
+          </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
@@ -96,22 +104,20 @@ const Navigation: React.FC<NavigationProps> = ({ onHome, onSelectService, onBlog
                     {link.name}
                     <ChevronDown size={14} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
-                  <div 
+                  <div
                     onMouseLeave={() => setIsDropdownOpen(false)}
-                    className={`absolute top-full left-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-3 transition-all duration-200 ${
-                      isDropdownOpen 
-                        ? 'opacity-100 translate-y-0 pointer-events-auto' 
-                        : 'opacity-0 -translate-y-2 pointer-events-none'
-                    }`}
+                    className={`absolute top-full left-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-3 transition-all duration-200 ${isDropdownOpen
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 -translate-y-2 pointer-events-none'
+                      }`}
                   >
                     {SERVICES.map((service) => (
                       <button
                         key={service.id}
-                        onClick={() => handleServiceSelect(service)}
+                        onClick={() => handleServiceSelect(service.id)}
                         className="w-full text-left px-5 py-3 hover:bg-emerald-50 group transition-colors flex items-start gap-4"
                       >
                         <div className="mt-1 p-1.5 bg-slate-50 rounded-lg group-hover:bg-white text-emerald-600 transition-colors">
-                          {/* Fix: Using React.ReactElement<any> to allow the injection of Lucide-specific props during cloneElement */}
                           {React.cloneElement(service.icon as React.ReactElement<any>, { size: 18, className: 'w-4.5 h-4.5' })}
                         </div>
                         <div className="flex flex-col">
@@ -129,15 +135,14 @@ const Navigation: React.FC<NavigationProps> = ({ onHome, onSelectService, onBlog
               ) : (
                 <button
                   key={link.name}
-                  onClick={() => link.action ? link.action() : handleLinkClick(link.href!)}
+                  onClick={() => handleLinkClick(link.href)}
                   className="text-slate-600 hover:text-emerald-600 font-bold text-sm uppercase tracking-wider transition-colors outline-none"
                 >
                   {link.name}
                 </button>
               )
             ))}
-            
-            {/* Enhanced Direct Contact Button */}
+
             <a
               href={whatsappLink}
               target="_blank"
@@ -174,8 +179,7 @@ const Navigation: React.FC<NavigationProps> = ({ onHome, onSelectService, onBlog
               <button
                 onClick={() => {
                   if (link.hasDropdown) setIsDropdownOpen(!isDropdownOpen);
-                  else if (link.action) { link.action(); setIsOpen(false); }
-                  else handleLinkClick(link.href!);
+                  else handleLinkClick(link.href);
                 }}
                 className="flex items-center justify-between w-full text-left text-lg font-bold text-slate-700 hover:text-emerald-600 py-3 border-b border-slate-50 last:border-0 outline-none"
               >

@@ -1,30 +1,41 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, ChevronRight, Share2 } from 'lucide-react';
-import { BLOG_POSTS, BlogPost } from '../constants';
+import { BLOG_POSTS } from '../constants';
 
-interface BlogViewProps {
-  selectedPost: BlogPost | null;
-  onSelectPost: (post: BlogPost | null) => void;
-}
+const BlogView: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
-const BlogView: React.FC<BlogViewProps> = ({ selectedPost, onSelectPost }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [selectedPost]);
+  }, [id]);
+
+  const selectedPost = id ? BLOG_POSTS.find(p => p.id === id) : null;
+
+  if (id && !selectedPost) {
+    return (
+      <div className="pt-32 pb-24 text-center">
+        <h1 className="text-2xl font-bold mb-4">Beitrag nicht gefunden</h1>
+        <button onClick={() => navigate('/blog')} className="text-emerald-600 font-bold">Zurück zum Blog</button>
+      </div>
+    );
+  }
 
   if (selectedPost) {
     return (
       <div className="pt-24 pb-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
-            onClick={() => onSelectPost(null)}
+            onClick={() => navigate('/blog')}
             className="inline-flex items-center gap-2 text-slate-500 hover:text-emerald-600 font-medium mb-12 transition-colors group"
           >
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
             Zurück zur Blog-Übersicht
           </button>
 
+          {/* ... (rest of post display) */}
           <div className="mb-10">
             <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
               {selectedPost.category}
@@ -93,7 +104,7 @@ const BlogView: React.FC<BlogViewProps> = ({ selectedPost, onSelectPost }) => {
             <div
               key={post.id}
               className="group bg-white rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full cursor-pointer"
-              onClick={() => onSelectPost(post)}
+              onClick={() => navigate(`/blog/${post.id}`)}
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img

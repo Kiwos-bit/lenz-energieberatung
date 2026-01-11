@@ -1,5 +1,5 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import ServiceDetailView from './components/ServiceDetailView';
 import LegalView from './components/LegalView';
 import BlogView from './components/BlogView';
-import { ServiceDetail, CONTACT_INFO, SERVICES } from './constants';
+import { CONTACT_INFO, SERVICES, BLOG_POSTS } from './constants';
 import { ShieldCheck, Award, CheckCircle2, BadgeCheck, MessageCircle } from 'lucide-react';
 
 const DEFAULT_TITLE = "Lenz Energieberatung Düsseldorf | Schornsteinfegermeister & Energieexperte";
@@ -20,12 +20,13 @@ const BASE_URL = "https://lenz-energieberatung.com";
 const DEFAULT_IMAGE = `${BASE_URL}/markus-lenz-portrait.jpg`;
 
 const App: React.FC = () => {
-  const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
-  const [selectedLegalPage, setSelectedLegalPage] = useState<'impressum' | 'datenschutz' | 'agb' | null>(null);
-  const [showBlog, setShowBlog] = useState(false);
-  const [selectedBlogPost, setSelectedBlogPost] = useState<any>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Scroll to top on route change
+    window.scrollTo(0, 0);
+
     const updateMeta = (selector: string, attr: string, value: string) => {
       const el = document.querySelector(selector);
       if (el) el.setAttribute(attr, value);
@@ -34,32 +35,37 @@ const App: React.FC = () => {
     let title = DEFAULT_TITLE;
     let description = DEFAULT_META;
     let image = DEFAULT_IMAGE;
-    let canonical = BASE_URL;
+    let canonical = `${BASE_URL}${location.pathname}`;
 
-    if (showBlog) {
-      if (selectedBlogPost) {
-        title = `${selectedBlogPost.title} | Lenz Energieberatung`;
-        description = selectedBlogPost.excerpt;
-        image = selectedBlogPost.image.startsWith('http') ? selectedBlogPost.image : `${BASE_URL}${selectedBlogPost.image}`;
-        canonical = `${BASE_URL}/blog/${selectedBlogPost.id}`;
-      } else {
-        title = "Blog | Energie-News & Tipps Düsseldorf | Lenz";
-        description = "Aktuelle Berichte zu Energieeffizienz, Förderung und Technik in Düsseldorf. Expertenwissen von Markus Lenz.";
-        canonical = `${BASE_URL}/blog`;
+    const path = location.pathname;
+
+    if (path === '/blog') {
+      title = "Blog | Energie-News & Tipps Düsseldorf | Lenz";
+      description = "Aktuelle Berichte zu Energieeffizienz, Förderung und Technik in Düsseldorf. Expertenwissen von Markus Lenz.";
+    } else if (path.startsWith('/blog/')) {
+      const blogId = path.split('/')[2];
+      const blogPost = BLOG_POSTS.find(b => b.id === blogId);
+      if (blogPost) {
+        title = `${blogPost.title} | Lenz Energieberatung`;
+        description = blogPost.excerpt;
+        image = blogPost.image.startsWith('http') ? blogPost.image : `${BASE_URL}${blogPost.image}`;
       }
-    } else if (selectedService) {
-      title = selectedService.seoTitle;
-      description = selectedService.seoMeta;
-      canonical = `${BASE_URL}/#${selectedService.id}`;
-    } else if (selectedLegalPage) {
-      const legalTitles = {
+    } else if (path.startsWith('/leistungen/')) {
+      const serviceId = path.split('/')[2];
+      const service = SERVICES.find(s => s.id === serviceId);
+      if (service) {
+        title = service.seoTitle;
+        description = service.seoMeta;
+      }
+    } else if (['/impressum', '/datenschutz', '/agb'].includes(path)) {
+      const type = path.substring(1);
+      const legalTitles: any = {
         impressum: "Impressum | Lenz Energieberatung",
         datenschutz: "Datenschutzerklärung | Lenz Energieberatung",
         agb: "Allgemeine Geschäftsbedingungen | Lenz Energieberatung"
       };
-      title = legalTitles[selectedLegalPage];
-      description = `Rechtliche Informationen zur Lenz Energieberatung Düsseldorf - ${selectedLegalPage.toUpperCase()}. NAP-konforme Angaben nach TMG.`;
-      canonical = `${BASE_URL}/${selectedLegalPage}`;
+      title = legalTitles[type];
+      description = `Rechtliche Informationen zur Lenz Energieberatung Düsseldorf - ${type.toUpperCase()}. NAP-konforme Angaben nach TMG.`;
     }
 
     document.title = title;
@@ -74,15 +80,16 @@ const App: React.FC = () => {
     updateMeta('meta[property="twitter:image"]', 'content', image);
     updateMeta('meta[property="twitter:url"]', 'content', canonical);
 
+    // Schema logic
     const existingSchema = document.getElementById('local-business-schema');
     if (existingSchema) existingSchema.remove();
 
-    const schemaData = {
+    const schemaData: any = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Lenz Energieberatung",
       "description": "Zertifizierte Energieberatung in Düsseldorf. Markus Lenz ist Schornsteinfegermeister und BAFA-gelisteter Energieeffizienz-Experte. Spezialisiert auf Energieausweise, iSFP Sanierungsfahrpläne, Heizlastberechnungen und BEG-Förderberatung.",
-      "image": image,
+      "image": DEFAULT_IMAGE,
       "@id": `${BASE_URL}/#localbusiness`,
       "url": BASE_URL,
       "telephone": "+4915736533337",
@@ -111,8 +118,8 @@ const App: React.FC = () => {
         "reviewCount": "47"
       },
       "sameAs": [
-        "https://www.facebook.com/lenz-energieberatung", // Placeholder
-        "https://www.instagram.com/lenz-energieberatung" // Placeholder
+        "https://www.facebook.com/lenz-energieberatung",
+        "https://www.instagram.com/lenz-energieberatung"
       ]
     };
 
@@ -122,37 +129,41 @@ const App: React.FC = () => {
     script.text = JSON.stringify(schemaData);
     document.head.appendChild(script);
 
-    if (showBlog && selectedBlogPost) {
-      const blogSchema = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": selectedBlogPost.title,
-        "image": image,
-        "datePublished": selectedBlogPost.date.split('.').reverse().join('-'), // YYYY-MM-DD
-        "author": [{
-          "@type": "Person",
-          "name": "Markus Lenz",
-          "url": BASE_URL
-        }],
-        "description": selectedBlogPost.excerpt,
-        "publisher": {
-          "@type": "Organization",
-          "name": "Lenz Energieberatung",
-          "logo": {
-            "@type": "ImageObject",
-            "url": image
+    // Blog Schema
+    const existingBlogSchema = document.getElementById('blog-schema');
+    if (existingBlogSchema) existingBlogSchema.remove();
+
+    if (path.startsWith('/blog/')) {
+      const blogId = path.split('/')[2];
+      const blogPost = BLOG_POSTS.find(b => b.id === blogId);
+      if (blogPost) {
+        const blogSchema = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": blogPost.title,
+          "image": blogPost.image.startsWith('http') ? blogPost.image : `${BASE_URL}${blogPost.image}`,
+          "datePublished": blogPost.date.split('.').reverse().join('-'),
+          "author": [{
+            "@type": "Person",
+            "name": "Markus Lenz",
+            "url": BASE_URL
+          }],
+          "description": blogPost.excerpt,
+          "publisher": {
+            "@type": "Organization",
+            "name": "Lenz Energieberatung"
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": canonical
           }
-        },
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": canonical
-        }
-      };
-      const scriptB = document.createElement('script');
-      scriptB.id = 'blog-schema';
-      scriptB.type = 'application/ld+json';
-      scriptB.text = JSON.stringify(blogSchema);
-      document.head.appendChild(scriptB);
+        };
+        const scriptB = document.createElement('script');
+        scriptB.id = 'blog-schema';
+        scriptB.type = 'application/ld+json';
+        scriptB.text = JSON.stringify(blogSchema);
+        document.head.appendChild(scriptB);
+      }
     }
 
     return () => {
@@ -161,116 +172,75 @@ const App: React.FC = () => {
       const b = document.getElementById('blog-schema');
       if (b) b.remove();
     };
-  }, [selectedService, selectedLegalPage, showBlog]);
-
-  const handleHome = () => {
-    setSelectedService(null);
-    setSelectedLegalPage(null);
-    setShowBlog(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSelectService = (service: ServiceDetail) => {
-    setSelectedService(service);
-    setSelectedLegalPage(null);
-    setShowBlog(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSelectLegal = (type: 'impressum' | 'datenschutz' | 'agb') => {
-    setSelectedLegalPage(type);
-    setSelectedService(null);
-    setShowBlog(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBlog = () => {
-    setShowBlog(true);
-    setSelectedBlogPost(null);
-    setSelectedService(null);
-    setSelectedLegalPage(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const element = document.getElementById('kontakt');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  }, [location]);
 
   const whatsappLink = `https://wa.me/4915736533337?text=${encodeURIComponent('Guten Tag Herr Lenz, ich interessiere mich für eine Energieberatung in Düsseldorf. Könnten Sie mich bitte kontaktieren?')}`;
 
   return (
     <div className="min-h-screen">
-      <Navigation onHome={handleHome} onSelectService={handleSelectService} onBlog={handleBlog} />
+      <Navigation />
 
       <main>
-        {showBlog ? (
-          <BlogView selectedPost={selectedBlogPost} onSelectPost={setSelectedBlogPost} />
-        ) : selectedService ? (
-          <ServiceDetailView
-            service={selectedService}
-            onBack={() => setSelectedService(null)}
-          />
-        ) : selectedLegalPage ? (
-          <LegalView
-            type={selectedLegalPage}
-            onBack={() => setSelectedLegalPage(null)}
-          />
-        ) : (
-          <>
-            <Hero />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
 
-            <section className="py-16 bg-white relative overflow-hidden" aria-labelledby="certifications-heading">
-              <div className="absolute inset-0 bg-slate-50/50 -z-10" />
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col items-center mb-12">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-50 text-emerald-700 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-                    <ShieldCheck size={14} aria-hidden="true" />
-                    Offiziell Anerkannt
-                  </div>
-                  <h2 id="certifications-heading" className="text-2xl sm:text-3xl font-black text-slate-900 text-center tracking-tight">
-                    Zertifizierte Qualität nach Bundesvorgaben
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                  {[
-                    { label: "BAFA", sub: "GELISTET", desc: "Zertifizierter Berater", color: "emerald", icon: <Award size={24} aria-hidden="true" /> },
-                    { label: "KfW", sub: "FÖRDERFÄHIG", desc: "Bestätigter Sachverständiger", color: "blue", icon: <BadgeCheck size={24} aria-hidden="true" /> },
-                    { label: "DENA", sub: "EXPERTE", desc: "Energieeffizienz-Experte", color: "indigo", icon: <ShieldCheck size={24} aria-hidden="true" /> },
-                    { label: "GEG", sub: "KONFORM", desc: "Rechtssichere Prüfung", color: "slate", icon: <CheckCircle2 size={24} aria-hidden="true" /> }
-                  ].map((cert, i) => (
-                    <div key={i} className="group relative bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-emerald-100/50 transition-all duration-300 hover:-translate-y-1">
-                      <div className={`mb-4 w-12 h-12 flex items-center justify-center rounded-2xl bg-${cert.color}-50 text-${cert.color}-600 group-hover:scale-110 transition-transform`}>
-                        {cert.icon}
-                      </div>
-                      <div className="flex flex-col">
-                        <span className={`text-2xl sm:text-3xl font-black italic tracking-tighter text-${cert.color}-900`}>{cert.label}</span>
-                        <span className={`text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-${cert.color}-600 mb-2`}>{cert.sub}</span>
-                        <div className="h-px w-8 bg-slate-200 mb-3 group-hover:w-full transition-all duration-500" />
-                        <span className="text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-600 transition-colors leading-tight">
-                          {cert.desc}
-                        </span>
-                      </div>
+              <section className="py-16 bg-white relative overflow-hidden" aria-labelledby="certifications-heading">
+                <div className="absolute inset-0 bg-slate-50/50 -z-10" />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="flex flex-col items-center mb-12">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-50 text-emerald-700 rounded-full text-xs font-black uppercase tracking-widest mb-4">
+                      <ShieldCheck size={14} aria-hidden="true" />
+                      Offiziell Anerkannt
                     </div>
-                  ))}
-                </div>
-              </div>
-            </section>
+                    <h2 id="certifications-heading" className="text-2xl sm:text-3xl font-black text-slate-900 text-center tracking-tight">
+                      Zertifizierte Qualität nach Bundesvorgaben
+                    </h2>
+                  </div>
 
-            <Services onSelectService={setSelectedService} />
-            <Process />
-            <About />
-            <FAQ />
-          </>
-        )}
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                    {[
+                      { label: "BAFA", sub: "GELISTET", desc: "Zertifizierter Berater", color: "emerald", icon: <Award size={24} aria-hidden="true" /> },
+                      { label: "KfW", sub: "FÖRDERFÄHIG", desc: "Bestätigter Sachverständiger", color: "blue", icon: <BadgeCheck size={24} aria-hidden="true" /> },
+                      { label: "DENA", sub: "EXPERTE", desc: "Energieeffizienz-Experte", color: "indigo", icon: <ShieldCheck size={24} aria-hidden="true" /> },
+                      { label: "GEG", sub: "KONFORM", desc: "Rechtssichere Prüfung", color: "slate", icon: <CheckCircle2 size={24} aria-hidden="true" /> }
+                    ].map((cert, i) => (
+                      <div key={i} className="group relative bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-emerald-100/50 transition-all duration-300 hover:-translate-y-1">
+                        <div className={`mb-4 w-12 h-12 flex items-center justify-center rounded-2xl bg-${cert.color}-50 text-${cert.color}-600 group-hover:scale-110 transition-transform`}>
+                          {cert.icon}
+                        </div>
+                        <div className="flex flex-col">
+                          <span className={`text-2xl sm:text-3xl font-black italic tracking-tighter text-${cert.color}-900`}>{cert.label}</span>
+                          <span className={`text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-${cert.color}-600 mb-2`}>{cert.sub}</span>
+                          <div className="h-px w-8 bg-slate-200 mb-3 group-hover:w-full transition-all duration-500" />
+                          <span className="text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-600 transition-colors leading-tight">
+                            {cert.desc}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <Services />
+              <Process />
+              <About />
+              <FAQ />
+            </>
+          } />
+          <Route path="/leistungen/:id" element={<ServiceDetailView />} />
+          <Route path="/blog" element={<BlogView />} />
+          <Route path="/blog/:id" element={<BlogView />} />
+          <Route path="/impressum" element={<LegalView type="impressum" />} />
+          <Route path="/datenschutz" element={<LegalView type="datenschutz" />} />
+          <Route path="/agb" element={<LegalView type="agb" />} />
+        </Routes>
         <Contact />
       </main>
 
-      <Footer onHome={handleHome} onLegal={handleSelectLegal} onBlog={handleBlog} />
+      <Footer />
 
       {/* WhatsApp Floating Button */}
       <a
@@ -290,7 +260,6 @@ const App: React.FC = () => {
       <div className="fixed bottom-6 left-6 right-6 z-40 md:hidden">
         <a
           href="#kontakt"
-          onClick={handleScrollToContact}
           className="flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-2xl font-bold shadow-2xl shadow-emerald-900/20 active:scale-95 transition-transform"
         >
           Jetzt Termin anfragen
