@@ -73,10 +73,9 @@ const Hero: React.FC = () => {
               <img
                 src="/markus-lenz-portrait.jpg"
                 alt="Markus Lenz - Ihr zertifizierter Energieberater und Schornsteinfegermeister in Düsseldorf"
-                width="450"
-                height="800"
+                width="688"
+                height="1552"
                 fetchPriority="high"
-                loading="eager"
                 className="w-full h-full object-cover object-[center_36%] scale-[1.45]"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
