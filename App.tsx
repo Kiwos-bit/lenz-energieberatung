@@ -16,12 +16,14 @@ import { ShieldCheck, Award, CheckCircle2, BadgeCheck, MessageCircle } from 'luc
 
 const DEFAULT_TITLE = "Lenz Energieberatung Düsseldorf | Schornsteinfegermeister & Energieexperte";
 const DEFAULT_META = "Zertifizierte Energieberatung in Düsseldorf. Markus Lenz hilft Ihnen bei Energieausweisen, iSFP, Heizlastberechnung & BEG-Förderung. Jetzt Kosten sparen!";
-const DEFAULT_IMAGE = "/markus-lenz-portrait.jpg";
+const BASE_URL = "https://lenz-energieberatung.com";
+const DEFAULT_IMAGE = `${BASE_URL}/markus-lenz-portrait.jpg`;
 
 const App: React.FC = () => {
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
   const [selectedLegalPage, setSelectedLegalPage] = useState<'impressum' | 'datenschutz' | 'agb' | null>(null);
   const [showBlog, setShowBlog] = useState(false);
+  const [selectedBlogPost, setSelectedBlogPost] = useState<any>(null);
 
   useEffect(() => {
     const updateMeta = (selector: string, attr: string, value: string) => {
@@ -32,16 +34,23 @@ const App: React.FC = () => {
     let title = DEFAULT_TITLE;
     let description = DEFAULT_META;
     let image = DEFAULT_IMAGE;
-    let canonical = "https://lenz-energieberatung.com";
+    let canonical = BASE_URL;
 
     if (showBlog) {
-      title = "Blog | Energie-News & Tipps Düsseldorf | Lenz";
-      description = "Aktuelle Berichte zu Energieeffizienz, Förderung und Technik in Düsseldorf. Expertenwissen von Markus Lenz.";
-      canonical = "https://lenz-energieberatung.com/blog";
+      if (selectedBlogPost) {
+        title = `${selectedBlogPost.title} | Lenz Energieberatung`;
+        description = selectedBlogPost.excerpt;
+        image = selectedBlogPost.image.startsWith('http') ? selectedBlogPost.image : `${BASE_URL}${selectedBlogPost.image}`;
+        canonical = `${BASE_URL}/blog/${selectedBlogPost.id}`;
+      } else {
+        title = "Blog | Energie-News & Tipps Düsseldorf | Lenz";
+        description = "Aktuelle Berichte zu Energieeffizienz, Förderung und Technik in Düsseldorf. Expertenwissen von Markus Lenz.";
+        canonical = `${BASE_URL}/blog`;
+      }
     } else if (selectedService) {
       title = selectedService.seoTitle;
       description = selectedService.seoMeta;
-      canonical = `https://lenz-energieberatung.com/#${selectedService.id}`;
+      canonical = `${BASE_URL}/#${selectedService.id}`;
     } else if (selectedLegalPage) {
       const legalTitles = {
         impressum: "Impressum | Lenz Energieberatung",
@@ -50,7 +59,7 @@ const App: React.FC = () => {
       };
       title = legalTitles[selectedLegalPage];
       description = `Rechtliche Informationen zur Lenz Energieberatung Düsseldorf - ${selectedLegalPage.toUpperCase()}. NAP-konforme Angaben nach TMG.`;
-      canonical = `https://lenz-energieberatung.com/${selectedLegalPage}`;
+      canonical = `${BASE_URL}/${selectedLegalPage}`;
     }
 
     document.title = title;
@@ -74,8 +83,8 @@ const App: React.FC = () => {
       "name": "Lenz Energieberatung",
       "description": "Zertifizierte Energieberatung in Düsseldorf. Markus Lenz ist Schornsteinfegermeister und BAFA-gelisteter Energieeffizienz-Experte. Spezialisiert auf Energieausweise, iSFP Sanierungsfahrpläne, Heizlastberechnungen und BEG-Förderberatung.",
       "image": image,
-      "@id": "https://lenz-energieberatung.com",
-      "url": "https://lenz-energieberatung.com",
+      "@id": `${BASE_URL}/#localbusiness`,
+      "url": BASE_URL,
       "telephone": "+4915736533337",
       "email": "info@lenzenergieberatung.de",
       "address": {
@@ -90,27 +99,6 @@ const App: React.FC = () => {
         "latitude": 51.2131,
         "longitude": 6.8045
       },
-      "areaServed": [
-        "Düsseldorf", "Oberbilk", "Bilk", "Friedrichstadt", "Eller", "Wersten", "Benrath", "Gerresheim", "Neuss", "Ratingen", "Hilden", "Erkrath", "Meerbusch"
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Energieberatung Leistungen",
-        "itemListElement": SERVICES.map(s => ({
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": s.title,
-            "description": s.description
-          }
-        }))
-      },
       "priceRange": "€€",
       "founder": {
         "@type": "Person",
@@ -123,7 +111,8 @@ const App: React.FC = () => {
         "reviewCount": "47"
       },
       "sameAs": [
-        "https://lenz-energieberatung.com"
+        "https://www.facebook.com/lenz-energieberatung", // Placeholder
+        "https://www.instagram.com/lenz-energieberatung" // Placeholder
       ]
     };
 
@@ -162,6 +151,7 @@ const App: React.FC = () => {
 
   const handleBlog = () => {
     setShowBlog(true);
+    setSelectedBlogPost(null);
     setSelectedService(null);
     setSelectedLegalPage(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -180,24 +170,24 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Navigation onHome={handleHome} onSelectService={handleSelectService} onBlog={handleBlog} />
-      
+
       <main>
         {showBlog ? (
-          <BlogView />
+          <BlogView selectedPost={selectedBlogPost} onSelectPost={setSelectedBlogPost} />
         ) : selectedService ? (
-          <ServiceDetailView 
-            service={selectedService} 
-            onBack={() => setSelectedService(null)} 
+          <ServiceDetailView
+            service={selectedService}
+            onBack={() => setSelectedService(null)}
           />
         ) : selectedLegalPage ? (
-          <LegalView 
-            type={selectedLegalPage} 
-            onBack={() => setSelectedLegalPage(null)} 
+          <LegalView
+            type={selectedLegalPage}
+            onBack={() => setSelectedLegalPage(null)}
           />
         ) : (
           <>
             <Hero />
-            
+
             <section className="py-16 bg-white relative overflow-hidden" aria-labelledby="certifications-heading">
               <div className="absolute inset-0 bg-slate-50/50 -z-10" />
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -210,7 +200,7 @@ const App: React.FC = () => {
                     Zertifizierte Qualität nach Bundesvorgaben
                   </h2>
                 </div>
-                
+
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                   {[
                     { label: "BAFA", sub: "GELISTET", desc: "Zertifizierter Berater", color: "emerald", icon: <Award size={24} aria-hidden="true" /> },
@@ -244,9 +234,9 @@ const App: React.FC = () => {
         )}
         <Contact />
       </main>
-      
+
       <Footer onHome={handleHome} onLegal={handleSelectLegal} onBlog={handleBlog} />
-      
+
       {/* WhatsApp Floating Button */}
       <a
         href={whatsappLink}
@@ -263,7 +253,7 @@ const App: React.FC = () => {
       </a>
 
       <div className="fixed bottom-6 left-6 right-6 z-40 md:hidden">
-        <a 
+        <a
           href="#kontakt"
           onClick={handleScrollToContact}
           className="flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-2xl font-bold shadow-2xl shadow-emerald-900/20 active:scale-95 transition-transform"

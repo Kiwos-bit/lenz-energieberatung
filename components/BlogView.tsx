@@ -3,42 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Calendar, User, ChevronRight, Share2 } from 'lucide-react';
 import { BLOG_POSTS, BlogPost } from '../constants';
 
-const BlogView: React.FC = () => {
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+interface BlogViewProps {
+  selectedPost: BlogPost | null;
+  onSelectPost: (post: BlogPost | null) => void;
+}
 
+const BlogView: React.FC<BlogViewProps> = ({ selectedPost, onSelectPost }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Dynamic SEO for individual blog posts
-    if (selectedPost) {
-      document.title = `${selectedPost.title} | Lenz Energieberatung`;
-
-      const updateMeta = (selector: string, attr: string, value: string) => {
-        const el = document.querySelector(selector);
-        if (el) el.setAttribute(attr, value);
-      };
-
-      updateMeta('meta[name="description"]', 'content', selectedPost.excerpt);
-      updateMeta('meta[property="og:title"]', 'content', selectedPost.title);
-      updateMeta('meta[property="og:description"]', 'content', selectedPost.excerpt);
-      updateMeta('meta[property="og:image"]', 'content', selectedPost.image);
-      updateMeta('meta[property="twitter:title"]', 'content', selectedPost.title);
-      updateMeta('meta[property="twitter:description"]', 'content', selectedPost.excerpt);
-      updateMeta('meta[property="twitter:image"]', 'content', selectedPost.image);
-    } else {
-      // Reset to default blog overview SEO when going back
-      document.title = "Blog | Energie-News & Tipps Düsseldorf | Lenz";
-      const metaDesc = "Aktuelle Berichte zu Energieeffizienz, Förderung und Technik in Düsseldorf. Expertenwissen von Markus Lenz.";
-
-      const updateMeta = (selector: string, attr: string, value: string) => {
-        const el = document.querySelector(selector);
-        if (el) el.setAttribute(attr, value);
-      };
-
-      updateMeta('meta[name="description"]', 'content', metaDesc);
-      updateMeta('meta[property="og:title"]', 'content', "Blog | Energie-News & Tipps Düsseldorf | Lenz");
-      updateMeta('meta[property="og:description"]', 'content', metaDesc);
-    }
   }, [selectedPost]);
 
   if (selectedPost) {
@@ -46,7 +18,7 @@ const BlogView: React.FC = () => {
       <div className="pt-24 pb-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
-            onClick={() => setSelectedPost(null)}
+            onClick={() => onSelectPost(null)}
             className="inline-flex items-center gap-2 text-slate-500 hover:text-emerald-600 font-medium mb-12 transition-colors group"
           >
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
@@ -121,7 +93,7 @@ const BlogView: React.FC = () => {
             <div
               key={post.id}
               className="group bg-white rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full cursor-pointer"
-              onClick={() => setSelectedPost(post)}
+              onClick={() => onSelectPost(post)}
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img

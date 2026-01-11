@@ -13,11 +13,11 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service, onBack }
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
+
     // Inject Service & Breadcrumb Schema
     const existingSchema = document.getElementById('service-schema');
     if (existingSchema) existingSchema.remove();
-    
+
     const existingBreadcrumb = document.getElementById('breadcrumb-schema');
     if (existingBreadcrumb) existingBreadcrumb.remove();
 
@@ -66,6 +66,19 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service, onBack }
       ]
     };
 
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": service.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+
     const scriptS = document.createElement('script');
     scriptS.id = 'service-schema';
     scriptS.type = 'application/ld+json';
@@ -78,11 +91,19 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service, onBack }
     scriptB.text = JSON.stringify(breadcrumbSchema);
     document.head.appendChild(scriptB);
 
+    const scriptF = document.createElement('script');
+    scriptF.id = 'faq-schema';
+    scriptF.type = 'application/ld+json';
+    scriptF.text = JSON.stringify(faqSchema);
+    document.head.appendChild(scriptF);
+
     return () => {
       const s = document.getElementById('service-schema');
       if (s) s.remove();
       const b = document.getElementById('breadcrumb-schema');
       if (b) b.remove();
+      const f = document.getElementById('faq-schema');
+      if (f) f.remove();
     };
   }, [service]);
 
@@ -97,7 +118,7 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service, onBack }
   return (
     <div className="pt-24 pb-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <button 
+        <button
           onClick={onBack}
           className="inline-flex items-center gap-2 text-slate-500 hover:text-emerald-600 font-medium mb-12 transition-colors group"
         >
