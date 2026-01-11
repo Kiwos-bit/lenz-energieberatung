@@ -65,8 +65,8 @@ const Footer: React.FC<FooterProps> = ({ onHome, onLegal, onBlog }) => {
             <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.href || '#'} 
+                  <a
+                    href={link.href || '#'}
                     onClick={(e) => handleLinkClick(e, link)}
                     className="hover:text-emerald-400 transition-colors"
                   >
@@ -82,8 +82,8 @@ const Footer: React.FC<FooterProps> = ({ onHome, onLegal, onBlog }) => {
             <ul className="space-y-4">
               {SERVICES.map((service) => (
                 <li key={service.id}>
-                  <a 
-                    href="#leistungen" 
+                  <a
+                    href="#leistungen"
                     onClick={(e) => {
                       e.preventDefault();
                       if (onHome) onHome();
@@ -122,6 +122,15 @@ const Footer: React.FC<FooterProps> = ({ onHome, onLegal, onBlog }) => {
 
         <div className="pt-10 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
           <p>© {new Date().getFullYear()} {CONTACT_INFO.name}. Alle Rechte vorbehalten.</p>
+          <div className="flex gap-8 text-slate-600 text-[10px] hidden lg:flex">
+            <span>Düsseldorf-Stadtmitte</span>
+            <span>Oberbilk</span>
+            <span>Unterrath</span>
+            <span>Gerresheim</span>
+            <span>Benrath</span>
+            <span>Kaiserswerth</span>
+            <span>Düsseltal</span>
+          </div>
           <div className="flex gap-8">
             <a href="#" onClick={(e) => handleLegalClick(e, 'impressum')} className="hover:text-emerald-400 transition-colors">Impressum</a>
             <a href="#" onClick={(e) => handleLegalClick(e, 'datenschutz')} className="hover:text-emerald-400 transition-colors">Datenschutz</a>

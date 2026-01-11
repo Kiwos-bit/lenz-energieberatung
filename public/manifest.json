@@ -1,0 +1,16 @@
+{
+  "name": "Lenz Energieberatung Düsseldorf",
+  "short_name": "Lenz Energie",
+  "description": "Zertifizierte Energieberatung in Düsseldorf - Markus Lenz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "icons": [
+    {
+      "src": "https://lenz-energieberatung.com/markus-lenz-portrait.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -122,9 +122,44 @@ const App: React.FC = () => {
     script.text = JSON.stringify(schemaData);
     document.head.appendChild(script);
 
+    if (showBlog && selectedBlogPost) {
+      const blogSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": selectedBlogPost.title,
+        "image": image,
+        "datePublished": selectedBlogPost.date.split('.').reverse().join('-'), // YYYY-MM-DD
+        "author": [{
+          "@type": "Person",
+          "name": "Markus Lenz",
+          "url": BASE_URL
+        }],
+        "description": selectedBlogPost.excerpt,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Lenz Energieberatung",
+          "logo": {
+            "@type": "ImageObject",
+            "url": image
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonical
+        }
+      };
+      const scriptB = document.createElement('script');
+      scriptB.id = 'blog-schema';
+      scriptB.type = 'application/ld+json';
+      scriptB.text = JSON.stringify(blogSchema);
+      document.head.appendChild(scriptB);
+    }
+
     return () => {
       const s = document.getElementById('local-business-schema');
       if (s) s.remove();
+      const b = document.getElementById('blog-schema');
+      if (b) b.remove();
     };
   }, [selectedService, selectedLegalPage, showBlog]);
 

@@ -46,12 +46,44 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Blog -->
+  <!-- Blog Overview -->
   <url>
     <loc>https://lenz-energieberatung.com/blog</loc>
     <lastmod>2026-01-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://lenz-energieberatung.com/blog/energieberatung-duesseldorf-foerderung</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lenz-energieberatung.com/blog/geg-2026-heizungsgesetz</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lenz-energieberatung.com/blog/waermepumpe-altbau-erfahrungen</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lenz-energieberatung.com/blog/energieausweis-pflicht</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lenz-energieberatung.com/blog/isfp-bonus-erklaert</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- Legal Pages -->
