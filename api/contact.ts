@@ -26,8 +26,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 'Authorization': `Bearer ${RESEND_API_KEY}`,
             },
             body: JSON.stringify({
-                from: 'Lenz Energieberatung <website@lenz-energieberatung.com>',
+                from: 'Lenz Energieberatung <onboarding@resend.dev>',
                 to: ['info@lenzenergieberatung.de'],
+                reply_to: email,
                 subject: `Neue Anfrage: ${service || 'Allgemein'} von ${name}`,
                 html: `
           <h3>Neue Kontaktanfrage über die Website</h3>
@@ -47,7 +48,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         } else {
             const errorData = await response.json();
             console.error('Resend Error:', errorData);
-            return res.status(response.status).json({ error: 'Failed to send email' });
+            // Return specific error message from Resend if available
+            return res.status(response.status).json({
+                error: errorData.message || 'Failed to send email',
+                details: errorData
+            });
         }
     } catch (error) {
         console.error('Server Error:', error);
