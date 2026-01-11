@@ -72,13 +72,13 @@ const Hero: React.FC = () => {
             <div className="relative w-full max-w-[450px] h-[800px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-200 bg-slate-100">
               <img
                 src="/markus-lenz-portrait.jpg"
-                alt="Markus Lenz - Kompetenz aus Düsseldorf"
-                width="688"
-                height="1552"
+                alt="Markus Lenz - Ihr zertifizierter Energieberater und Schornsteinfegermeister in Düsseldorf"
+                width="450"
+                height="800"
                 fetchPriority="high"
+                loading="eager"
                 className="w-full h-full object-cover object-[center_36%] scale-[1.45]"
                 onError={(e) => {
-                  // Fallback falls das Bild noch nicht hochgeladen wurde
                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
                 }}
               />

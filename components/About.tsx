@@ -16,7 +16,9 @@ const About: React.FC = () => {
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-emerald-600/5 rounded-full blur-3xl" />
               <img
                 src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=1200"
-                alt="Klassisches Einfamilienhaus - Energetisch saniert für dauerhafte Ersparnis"
+                alt="Energetisch saniertes Einfamilienhaus in Düsseldorf - Beispiel für erfolgreiche Energieberatung"
+                width="600"
+                height="600"
                 className="rounded-[2.5rem] shadow-2xl object-cover w-full h-[600px] ring-1 ring-slate-200 hover:scale-[1.02] transition-transform duration-500"
                 loading="lazy"
                 onError={(e) => {

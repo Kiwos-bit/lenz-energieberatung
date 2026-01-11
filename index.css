@@ -1,10 +1,8 @@
-/* Global Styles - Lenz Energieberatung */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Global Styles - Lenz Energieberatung */
 
 html {
   scroll-behavior: smooth;
