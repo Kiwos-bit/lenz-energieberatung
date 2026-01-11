@@ -69,7 +69,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       <p>Gerne berate ich Sie vor Ort in Oberbilk, Gerresheim, Benrath oder Kaiserswerth zu Ihren individuellen Möglichkeiten.</p>
     `,
-    date: "12.03.2026",
+    date: "10.01.2026",
     author: "Markus Lenz",
     category: "Förderung Regional",
     image: "https://images.unsplash.com/photo-1574958269340-fa927503f3dd?auto=format&fit=crop&q=80&w=1200"
@@ -98,7 +98,7 @@ export const BLOG_POSTS: BlogPost[] = [
       <h3>Förderung als Ausgleich</h3>
       <p>Um die Investition abzufedern, bietet der Staat bis zu <strong>70% Förderung</strong> für den Heizungstausch. Voraussetzung ist oft ein hydraulischer Abgleich und eine fachgerechte Heizlastberechnung.</p>
     `,
-    date: "28.02.2026",
+    date: "05.01.2026",
     author: "Markus Lenz",
     category: "Gesetze & Vorschriften",
     image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200"
@@ -130,7 +130,7 @@ export const BLOG_POSTS: BlogPost[] = [
         <p class="text-blue-700 m-0">In vielen Düsseldorfer Reihenhäusern aus den 60ern und 70ern haben wir erfolgreich Wärmepumpen installiert – oft mit Jahresarbeitszahlen (JAZ) von über 3,5.</p>
       </div>
     `,
-    date: "15.02.2026",
+    date: "28.12.2025",
     author: "Markus Lenz",
     category: "Technik",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
@@ -160,7 +160,7 @@ export const BLOG_POSTS: BlogPost[] = [
       <h3>Gültigkeit und Pflichten</h3>
       <p>Beide Ausweisarten sind <strong>10 Jahre gültig</strong>. Wichtig für Makler und Eigentümer: Schon in der Immobilienanzeige müssen Kennwerte aus dem Ausweis genannt werden. Bei der Besichtigung muss er unaufgefordert vorgelegt werden.</p>
     `,
-    date: "01.02.2026",
+    date: "15.12.2025",
     author: "Markus Lenz",
     category: "Recht & Immobilien",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1200"
@@ -181,7 +181,7 @@ export const BLOG_POSTS: BlogPost[] = [
       <h3>Verdoppelung der förderfähigen Kosten</h3>
       <p>Noch wichtiger: Ohne iSFP fördert die BAFA nur Kosten bis 30.000€ pro Jahr. Mit iSFP steigt diese Grenze auf <strong>60.000€ pro Jahr</strong>. Dies ist gerade bei teuren Maßnahmen wie Dachdämmung oder Fenstertausch entscheidend.</p>
     `,
-    date: "20.01.2026",
+    date: "01.12.2025",
     author: "Markus Lenz",
     category: "Förderung",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200"
