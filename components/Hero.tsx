@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
                 width="688"
                 height="1552"
                 fetchPriority="high"
-                className="w-full h-full object-cover object-[center_38%] scale-[1.55]"
+                className="w-full h-full object-cover object-[center_10%] scale-[1.4]"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
                 }}
