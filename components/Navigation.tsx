@@ -1,14 +1,12 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Leaf, MessageCircle } from 'lucide-react';
-import { CONTACT_INFO, SERVICES, ServiceDetail } from '../constants';
+import { CONTACT_INFO, SERVICES } from '../constants';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -21,185 +19,194 @@ const Navigation: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+    setIsDropdownOpen(false);
+  }, [location]);
+
   const navLinks = [
-    { name: 'Leistungen', href: '/#leistungen', hasDropdown: true },
-    { name: 'Ablauf', href: '/#ablauf' },
-    { name: 'Über mich', href: '/#ueber-mich' },
+    { name: 'Leistungen', href: '/leistungen', hasDropdown: true },
+    { name: 'Ablauf', href: '/ablauf' },
+    { name: 'Über mich', href: '/ueber-mich' },
     { name: 'Blog', href: '/blog' },
-    { name: 'FAQ', href: '/#faq' },
-    { name: 'Kontakt', href: '/#kontakt' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Kontakt', href: '/kontakt' },
   ];
 
-  const handleLinkClick = (href: string) => {
-    setIsOpen(false);
-    setIsDropdownOpen(false);
-
-    if (href.startsWith('/#')) {
-      const targetId = href.split('#')[1];
-      if (location.pathname === '/') {
-        const element = document.getElementById(targetId);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        navigate('/');
-        setTimeout(() => {
-          const element = document.getElementById(targetId);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    } else {
-      navigate(href);
-    }
-  };
-
-  const handleServiceSelect = (serviceId: string) => {
-    navigate(`/leistungen/${serviceId}`);
-    setIsOpen(false);
-    setIsDropdownOpen(false);
-  };
-
-  const whatsappLink = `https://wa.me/4915736533337?text=${encodeURIComponent('Hallo Herr Lenz, ich habe Ihre Website besucht und würde mich gerne über eine Energieberatung informieren.')}`;
+  const whatsappLink = `https://wa.me/4915736533337?text=${encodeURIComponent('Guten Tag Herr Lenz, ich interessiere mich für eine Energieberatung in Düsseldorf. Könnten Sie mich bitte kontaktieren?')}`;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
-          <Link
-            to="/"
-            className="flex-shrink-0 flex items-center gap-3 outline-none group"
-            onClick={() => setIsOpen(false)}
-          >
-            <div className="relative w-10 h-10 sm:w-11 sm:h-11 flex-shrink-0">
-              <div className="absolute inset-0 bg-emerald-600 rounded-xl rotate-3 group-hover:rotate-6 transition-transform shadow-lg shadow-emerald-200/50" />
-              <div className="absolute inset-0 bg-slate-900 rounded-xl -rotate-3 group-hover:-rotate-0 transition-transform flex items-center justify-center text-emerald-400">
-                <Leaf size={22} fill="currentColor" className="opacity-90" />
+    <>
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="bg-emerald-600 p-2 rounded-lg group-hover:bg-emerald-700 transition-colors">
+                <Leaf className="w-8 h-8 text-white" />
               </div>
-            </div>
-            <div className="flex flex-col text-left">
-              <div className="flex items-baseline">
-                <span className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter leading-none transition-colors group-hover:text-emerald-700">
-                  Lenz
-                </span>
-                <span className="text-xl sm:text-2xl font-medium text-emerald-600 tracking-tight leading-none ml-1.5">
-                  Energieberatung
-                </span>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-gray-900">Lenz Energieberatung</span>
+                <span className="text-xs text-gray-600">Düsseldorf | BAFA-zertifiziert</span>
               </div>
-              <div className="flex items-center gap-2 mt-1">
-                <div className="h-px w-3 bg-emerald-500 rounded-full" />
-                <span className="text-[8px] sm:text-[9.5px] font-black text-slate-400 uppercase tracking-[0.18em] leading-none">
-                  Schornsteinfegermeister & Energieeffizienz-Experte
-                </span>
-              </div>
-            </div>
-          </Link>
+            </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              link.hasDropdown ? (
-                <div key={link.name} className="relative" ref={dropdownRef}>
-                  <button
-                    onMouseEnter={() => setIsDropdownOpen(true)}
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center gap-1 text-slate-600 hover:text-emerald-600 font-bold text-sm uppercase tracking-wider transition-colors outline-none py-8"
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navLinks.map((link) => 
+                link.hasDropdown ? (
+                  <div key={link.name} className="relative" ref={dropdownRef}>
+                    <button
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="flex items-center text-gray-700 hover:text-emerald-600 font-medium transition-colors"
+                    >
+                      {link.name}
+                      <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {isDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                        {SERVICES.map((service) => (
+                          <Link
+                            key={service.id}
+                            to={`/leistungen/${service.id}`}
+                            className="block px-4 py-3 hover:bg-emerald-50 transition-colors"
+                            onClick={() => setIsDropdownOpen(false)}
+                          >
+                            <div className="flex items-start">
+                              <div className="mt-1">{service.icon}</div>
+                              <div className="ml-3">
+                                <div className="font-medium text-gray-900">{service.title}</div>
+                                <div className="text-sm text-gray-600 line-clamp-1">{service.description}</div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                        <Link
+                          to="/leistungen"
+                          className="block px-4 py-3 mt-2 border-t border-gray-100 text-emerald-600 font-medium hover:bg-emerald-50 transition-colors"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          Alle Leistungen ansehen →
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="text-gray-700 hover:text-emerald-600 font-medium transition-colors"
                   >
                     {link.name}
-                    <ChevronDown size={14} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  <div
-                    onMouseLeave={() => setIsDropdownOpen(false)}
-                    className={`absolute top-full left-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-3 transition-all duration-200 ${isDropdownOpen
-                      ? 'opacity-100 translate-y-0 pointer-events-auto'
-                      : 'opacity-0 -translate-y-2 pointer-events-none'
-                      }`}
-                  >
-                    {SERVICES.map((service) => (
-                      <button
-                        key={service.id}
-                        onClick={() => handleServiceSelect(service.id)}
-                        className="w-full text-left px-5 py-3 hover:bg-emerald-50 group transition-colors flex items-start gap-4"
-                      >
-                        <div className="mt-1 p-1.5 bg-slate-50 rounded-lg group-hover:bg-white text-emerald-600 transition-colors">
-                          {React.cloneElement(service.icon as React.ReactElement<any>, { size: 18, className: 'w-4.5 h-4.5' })}
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                            {service.title}
-                          </span>
-                          <span className="text-xs text-slate-500 group-hover:text-emerald-600/70">
-                            {service.description.split('.')[0]}
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <button
-                  key={link.name}
-                  onClick={() => handleLinkClick(link.href)}
-                  className="text-slate-600 hover:text-emerald-600 font-bold text-sm uppercase tracking-wider transition-colors outline-none"
+                  </Link>
+                )
+              )}
+
+              {/* CTA Buttons */}
+              <div className="flex items-center space-x-3 ml-4">
+                <a
+                  href={`tel:${CONTACT_INFO.phone}`}
+                  className="px-4 py-2 border-2 border-emerald-600 text-emerald-600 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
                 >
-                  {link.name}
-                </button>
-              )
-            ))}
-
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative flex items-center gap-3 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white pl-3 pr-6 py-2 rounded-full font-bold text-sm hover:from-emerald-700 hover:to-emerald-600 transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-0.5 active:scale-95 group"
-            >
-              <div className="relative w-10 h-10 flex items-center justify-center bg-white/20 rounded-full overflow-hidden">
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors" />
-                <MessageCircle size={20} fill="currentColor" className="relative group-hover:rotate-12 transition-transform duration-300" />
-                <span className="absolute inset-0 rounded-full animate-ping bg-white/20 opacity-0 group-hover:opacity-100 pointer-events-none" />
+                  {CONTACT_INFO.phone}
+                </a>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center px-4 py-2 bg-[#25D366] text-white rounded-lg font-semibold hover:bg-[#20BA5A] transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  WhatsApp
+                </a>
               </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-[9px] font-black uppercase tracking-widest text-emerald-100/90 mb-0.5">Direkt-Kontakt</span>
-                <span className="text-sm font-black tracking-tight">{CONTACT_INFO.phone}</span>
-              </div>
-            </a>
-          </div>
+            </div>
 
-          <div className="md:hidden flex items-center">
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-600 hover:text-emerald-600 p-2"
+              className="lg:hidden p-2 text-gray-700 hover:text-emerald-600 transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
-      </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-slate-100 py-6 px-4 space-y-4 shadow-xl max-h-[80vh] overflow-y-auto">
-          {navLinks.map((link) => (
-            <div key={link.name} className="space-y-2">
-              <button
-                onClick={() => {
-                  if (link.hasDropdown) setIsDropdownOpen(!isDropdownOpen);
-                  else handleLinkClick(link.href);
-                }}
-                className="flex items-center justify-between w-full text-left text-lg font-bold text-slate-700 hover:text-emerald-600 py-3 border-b border-slate-50 last:border-0 outline-none"
-              >
-                {link.name}
-                {link.hasDropdown && <ChevronDown size={20} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />}
-              </button>
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="lg:hidden bg-white border-t border-gray-200">
+            <div className="px-4 py-4 space-y-3">
+              {navLinks.map((link) =>
+                link.hasDropdown ? (
+                  <div key={link.name}>
+                    <button
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="flex items-center justify-between w-full text-gray-700 font-medium py-2"
+                    >
+                      {link.name}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isDropdownOpen && (
+                      <div className="pl-4 space-y-2 mt-2">
+                        {SERVICES.map((service) => (
+                          <Link
+                            key={service.id}
+                            to={`/leistungen/${service.id}`}
+                            className="block py-2 text-gray-600 hover:text-emerald-600"
+                            onClick={() => { setIsOpen(false); setIsDropdownOpen(false); }}
+                          >
+                            {service.title}
+                          </Link>
+                        ))}
+                        <Link
+                          to="/leistungen"
+                          className="block py-2 text-emerald-600 font-medium"
+                          onClick={() => { setIsOpen(false); setIsDropdownOpen(false); }}
+                        >
+                          Alle Leistungen →
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="block text-gray-700 font-medium py-2 hover:text-emerald-600 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
+              
+              <div className="pt-4 space-y-3 border-t border-gray-200">
+                <a
+                  href={`tel:${CONTACT_INFO.phone}`}
+                  className="block w-full text-center px-4 py-3 border-2 border-emerald-600 text-emerald-600 rounded-lg font-semibold"
+                >
+                  {CONTACT_INFO.phone}
+                </a>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center px-4 py-3 bg-[#25D366] text-white rounded-lg font-semibold"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  WhatsApp Kontakt
+                </a>
+              </div>
             </div>
-          ))}
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white w-full py-5 rounded-2xl font-bold text-lg shadow-xl shadow-emerald-200"
-          >
-            <MessageCircle size={24} fill="currentColor" />
-            WhatsApp Nachricht senden
-          </a>
-        </div>
-      )}
-    </nav>
+          </div>
+        )}
+      </nav>
+
+      {/* Spacer for fixed nav */}
+      <div className="h-20"></div>
+    </>
   );
 };
 
