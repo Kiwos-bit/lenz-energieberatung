@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
             <p className="text-lg text-slate-600 mb-10 leading-relaxed">
               <strong>Theorie trifft Praxis:</strong> Ihr unabhängiger Energieberater in Düsseldorf. Markus Lenz bringt die Erfahrung aus dem Schornsteinfeger-Handwerk direkt in Ihre Sanierungsplanung. Ehrlich, fundiert und mit Blick für das Machbare.
             </p>
-
+            
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a
                 href="#kontakt"
@@ -68,16 +68,17 @@ const Hero: React.FC = () => {
 
           <div className="relative group flex justify-center lg:justify-end">
             <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-200 to-slate-200 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
-
-            <div className="relative w-full max-w-[450px] h-[800px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-200 bg-slate-100">
+            
+            <div className="relative w-full max-w-[450px] aspect-[688/1552] max-h-[750px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-200 bg-slate-100">
               <img
                 src="/markus-lenz-portrait.jpg"
-                alt="Markus Lenz - Ihr zertifizierter Energieberater und Schornsteinfegermeister in Düsseldorf"
+                alt="Markus Lenz - Kompetenz aus Düsseldorf"
                 width="688"
                 height="1552"
                 fetchPriority="high"
-                className="w-full h-full object-cover object-[center_25%] scale-[1.5]"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
+                  // Fallback falls das Bild noch nicht hochgeladen wurde
                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
                 }}
               />
