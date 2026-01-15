@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
@@ -66,17 +65,16 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative group flex justify-center lg:justify-end">
-            <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-200 to-slate-200 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
-            
-            <div className="relative w-full max-w-[450px] aspect-[688/1552] max-h-[750px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-200 bg-slate-100">
+          <div className="relative flex justify-center lg:justify-end">
+            {/* Bild-Container: OHNE Blur-Effekt, OHNE aspect-ratio für schwarze Balken */}
+            <div className="relative w-full max-w-[450px] h-[600px] overflow-hidden rounded-2xl shadow-xl border border-slate-200 bg-slate-100">
               <img
                 src="/markus-lenz-portrait.jpg"
                 alt="Markus Lenz - Kompetenz aus Düsseldorf"
                 width="688"
                 height="1552"
                 fetchPriority="high"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center"
                 onError={(e) => {
                   // Fallback falls das Bild noch nicht hochgeladen wurde
                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
