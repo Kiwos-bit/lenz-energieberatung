@@ -1,12 +1,10 @@
-# robots.txt für Lenz Energieberatung
-# Letzte Aktualisierung: 2026-01-15
+# Lenz Energieberatung - Robots.txt
+# Aktualisiert: Januar 2026
 
-# Alle Bots dürfen alles crawlen
 User-agent: *
 Allow: /
 
-# Sitemap Location
+# XML Sitemap
 Sitemap: https://lenzenergieberatung.de/sitemap.xml
 
-# Crawl-Delay für bessere Performance (optional)
-# Crawl-delay: 1
+# Optimiert für Google, Bing, und andere Suchmaschinen
