@@ -3,6 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { initWebVitals } from './utils/webVitals';
+
+// Initialize Web Vitals monitoring
+initWebVitals();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

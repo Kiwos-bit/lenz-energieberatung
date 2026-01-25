@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lenz Energieberatung - Ihr Experte in Düsseldorf</title>
     <meta name="description" content="Zertifizierte Energieberatung in Düsseldorf. Markus Lenz hilft Ihnen bei Energieausweisen, iSFP, Heizlastberechnung & BEG-Förderung. Jetzt Kosten sparen!">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Markus Lenz">
+    <meta name="geo.region" content="DE-NW">
+    <meta name="geo.placename" content="Düsseldorf">
     <link rel="canonical" href="https://lenzenergieberatung.de">
     <meta name="theme-color" content="#059669">
-    
+    <meta name="color-scheme" content="light">
+
     <!-- Performance Hints -->
     <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/markus-lenz-portrait.jpg" as="image" type="image/jpeg">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/markus-lenz-portrait.jpg">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -158,5 +170,14 @@
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      // Register Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .catch(() => {});
+        });
+      }
+    </script>
 </body>
 </html>
