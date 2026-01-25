@@ -24,9 +24,15 @@ export default function HomePage() {
 
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogDescription) {
-      ogDescription.setAttribute('content', 
+      ogDescription.setAttribute('content',
         'BAFA-zertifizierte Energieberatung in Düsseldorf. Energieausweise, Sanierungsfahrpläne, Förderberatung. Schornsteinfegermeister mit Praxis-Know-how.'
       );
+    }
+
+    // Canonical URL setzen
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (canonical) {
+      canonical.href = 'https://lenzenergieberatung.de/';
     }
   }, []);
 

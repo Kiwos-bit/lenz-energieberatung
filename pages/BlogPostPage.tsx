@@ -64,6 +64,15 @@ export default function BlogPostPage() {
       script.type = 'application/ld+json';
       script.text = JSON.stringify(articleSchema);
       document.head.appendChild(script);
+
+      // Canonical URL setzen
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+      canonical.href = `https://lenzenergieberatung.de/blog/${post.id}`;
     }
 
     window.scrollTo(0, 0);

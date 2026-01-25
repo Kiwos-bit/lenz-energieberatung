@@ -9,10 +9,19 @@ export default function BlogPage() {
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 
+      metaDescription.setAttribute('content',
         'Aktuelle News zu Energieberatung, Förderungen, Sanierung und Energieeffizienz. Expertenrat von Markus Lenz aus Düsseldorf.'
       );
     }
+
+    // Canonical URL setzen
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://lenzenergieberatung.de/blog';
 
     window.scrollTo(0, 0);
   }, []);

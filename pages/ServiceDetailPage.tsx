@@ -87,6 +87,45 @@ export default function ServiceDetailPage() {
       breadcrumbScript.type = 'application/ld+json';
       breadcrumbScript.text = JSON.stringify(breadcrumbSchema);
       document.head.appendChild(breadcrumbScript);
+
+      // Service Schema für SEO
+      const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": service.title,
+        "description": service.longDescription,
+        "provider": {
+          "@type": "LocalBusiness",
+          "@id": "https://lenzenergieberatung.de/#business",
+          "name": "Lenz Energieberatung"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Düsseldorf"
+        },
+        "serviceType": "Energieberatung",
+        "url": `https://lenzenergieberatung.de/leistungen/${service.id}`
+      };
+
+      const existingService = document.getElementById('service-schema');
+      if (existingService) {
+        existingService.remove();
+      }
+
+      const serviceScript = document.createElement('script');
+      serviceScript.id = 'service-schema';
+      serviceScript.type = 'application/ld+json';
+      serviceScript.text = JSON.stringify(serviceSchema);
+      document.head.appendChild(serviceScript);
+
+      // Canonical URL setzen
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+      canonical.href = `https://lenzenergieberatung.de/leistungen/${service.id}`;
     }
 
     window.scrollTo(0, 0);

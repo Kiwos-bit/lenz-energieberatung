@@ -9,10 +9,19 @@ export default function ServicesPage() {
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 
+      metaDescription.setAttribute('content',
         'Energieberatung Düsseldorf: Energieausweis, iSFP Sanierungsfahrplan, Heizlastberechnung, BAFA-Förderung. BAFA-zertifiziert. Jetzt Leistungen entdecken!'
       );
     }
+
+    // Canonical URL setzen
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://lenzenergieberatung.de/leistungen';
 
     window.scrollTo(0, 0);
   }, []);
