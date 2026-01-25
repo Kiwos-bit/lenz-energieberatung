@@ -1,4 +1,9 @@
 {
+  "github": {
+    "silent": true
+  },
+  "outputDirectory": "dist",
+  "ignoreCommand": "echo 'Skipping build check'",
   "rewrites": [
     {
       "source": "/robots.txt",
@@ -11,6 +16,21 @@
     {
       "source": "/((?!api|sitemap\\.xml).*)",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
   ]
 }
