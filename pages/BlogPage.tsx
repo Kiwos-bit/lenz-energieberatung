@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../constants';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import OptimizedImage from '../components/OptimizedImage';
 
 export default function BlogPage() {
   useEffect(() => {
@@ -48,9 +49,11 @@ export default function BlogPage() {
               className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <OptimizedImage
                   src={post.image}
                   alt={post.title}
+                  width={400}
+                  height={200}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">

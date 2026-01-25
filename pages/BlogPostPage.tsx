@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { BLOG_POSTS } from '../constants';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
+import OptimizedImage from '../components/OptimizedImage';
 
 export default function BlogPostPage() {
   const { postId } = useParams<{ postId: string }>();
@@ -86,9 +87,12 @@ export default function BlogPostPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Image */}
       <div className="relative h-96 overflow-hidden">
-        <img
+        <OptimizedImage
           src={post.image}
           alt={post.title}
+          width={1200}
+          height={400}
+          priority={true}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -176,9 +180,11 @@ export default function BlogPostPage() {
                   className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all group"
                 >
                   <div className="relative h-40 overflow-hidden">
-                    <img
+                    <OptimizedImage
                       src={relatedPost.image}
                       alt={relatedPost.title}
+                      width={400}
+                      height={160}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
