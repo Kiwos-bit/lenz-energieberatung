@@ -554,5 +554,185 @@ export const LOCAL_CITIES: LocalCity[] = [
     seoMeta: "Energieberatung in Meerbusch für anspruchsvolle Immobilien. ✓ iSFP ✓ Energieausweis ✓ Werterhaltende Sanierung ✓ BAFA-Förderung. Jetzt anfragen!",
     localInfo: "Meerbusch ist eine der wohlhabendsten Städte Deutschlands mit hochwertiger Bausubstanz. Energetische Sanierung muss hier besonders sorgfältig geplant werden, um den Charakter der Immobilien zu erhalten.",
     neighborhoods: ["Büderich", "Osterath", "Strümp", "Lank-Latum", "Bösinghoven", "Ilverich"]
+  },
+  {
+    id: "krefeld",
+    name: "Krefeld",
+    region: "Kreisfreie Stadt",
+    distance: "ca. 20 km",
+    population: "227.000",
+    description: "Als Ihr Energieberater für Krefeld unterstütze ich Sie bei der energetischen Sanierung Ihrer Immobilie. Die Samt- und Seidenstadt bietet einen vielfältigen Gebäudebestand – von gründerzeitlichen Villen bis zu Nachkriegsbauten – mit großem Einsparpotenzial.",
+    highlights: [
+      "Erfahrung mit Gründerzeit-Architektur",
+      "Spezialist für Altbausanierung",
+      "Flexible Vor-Ort-Termine in Krefeld",
+      "Fördermittelberatung für alle Programme"
+    ],
+    seoTitle: "Energieberater Krefeld | Energieausweis & Sanierungsfahrplan | Lenz",
+    seoMeta: "Zertifizierter Energieberater in Krefeld. ✓ Energieausweise ✓ iSFP Sanierungsfahrplan ✓ BAFA-Förderung ✓ Altbausanierung. Jetzt Termin vereinbaren!",
+    localInfo: "Krefeld ist eine kreisfreie Großstadt am linken Niederrhein mit reichem architektonischem Erbe aus der Textilblütezeit. Viele historische Gebäude bieten großes Potenzial für energetische Modernisierung.",
+    neighborhoods: ["Krefeld-Mitte", "Uerdingen", "Fischeln", "Hüls", "Bockum", "Oppum", "Linn"]
+  },
+  {
+    id: "duisburg",
+    name: "Duisburg",
+    region: "Kreisfreie Stadt",
+    distance: "ca. 25 km",
+    population: "498.000",
+    description: "Für Immobilienbesitzer in Duisburg biete ich professionelle Energieberatung mit fundiertem Know-how. Die größte Stadt der Region hat einen hohen Anteil an Mehrfamilienhäusern und Reihenhaussiedlungen, die von energetischer Sanierung stark profitieren.",
+    highlights: [
+      "Spezialisiert auf Mehrfamilienhäuser",
+      "WEG-Beratung für Eigentümergemeinschaften",
+      "Hydraulischer Abgleich für große Anlagen",
+      "Erfahrung mit Förderanträgen für MFH"
+    ],
+    seoTitle: "Energieberater Duisburg | Energieausweis & Förderberatung | Lenz",
+    seoMeta: "Ihr Energieberater für Duisburg. ✓ Energieausweise ✓ iSFP für MFH ✓ WEG-Beratung ✓ Bis 70% Förderung sichern. Kostenlose Erstberatung!",
+    localInfo: "Duisburg als größte Stadt im Ruhrgebiet bietet einen vielfältigen Gebäudebestand. Besonders die Arbeitersiedlungen aus den 1920er-50er Jahren haben enormes Sanierungspotenzial.",
+    neighborhoods: ["Duisburg-Mitte", "Rheinhausen", "Homberg", "Meiderich", "Hamborn", "Buchholz", "Großenbaum"]
+  },
+  {
+    id: "wuppertal",
+    name: "Wuppertal",
+    region: "Kreisfreie Stadt",
+    distance: "ca. 30 km",
+    population: "355.000",
+    description: "Als Energieberater für Wuppertal kenne ich die Besonderheiten der bergischen Bauweise. Die Stadt der Schwebebahn mit ihren Hanglagen und historischen Gebäuden erfordert individuelle Sanierungskonzepte, die ich gerne für Sie entwickle.",
+    highlights: [
+      "Expertise für bergische Architektur",
+      "Lösungen für Hanglagen-Häuser",
+      "Denkmalschutz-konforme Beratung",
+      "Schimmelprävention bei Altbauten"
+    ],
+    seoTitle: "Energieberater Wuppertal | Energieausweis & iSFP | Lenz",
+    seoMeta: "Zertifizierte Energieberatung in Wuppertal. ✓ Bergische Bauweise ✓ Altbausanierung ✓ iSFP ✓ BAFA-Förderung. Jetzt beraten lassen!",
+    localInfo: "Wuppertal erstreckt sich entlang des Tals der Wupper mit charakteristischer Hangbebauung. Die gründerzeitlichen Stadthäuser und bergischen Fachwerkhäuser stellen besondere Anforderungen an die energetische Sanierung.",
+    neighborhoods: ["Elberfeld", "Barmen", "Vohwinkel", "Cronenberg", "Ronsdorf", "Beyenburg"]
+  },
+  {
+    id: "koeln",
+    name: "Köln",
+    region: "Kreisfreie Stadt",
+    distance: "ca. 40 km",
+    population: "1.080.000",
+    description: "Auch für Kölner Immobilienbesitzer bin ich Ihr kompetenter Ansprechpartner für Energieberatung. Die Domstadt bietet einen vielfältigen Mix aus Gründerzeitbauten, Nachkriegsarchitektur und modernen Wohnquartieren – für jeden Gebäudetyp entwickle ich das passende Sanierungskonzept.",
+    highlights: [
+      "Erfahrung mit Kölner Veedel-Altbauten",
+      "WEG-Beratung für Eigentümergemeinschaften",
+      "Großstadt-Expertise für komplexe Projekte",
+      "Netzwerk zu Kölner Handwerksbetrieben"
+    ],
+    seoTitle: "Energieberater Köln | Energieausweis & Sanierungsfahrplan | Lenz",
+    seoMeta: "Ihr Energieberater für Köln. ✓ Energieausweise ✓ iSFP ✓ Altbau-Expertise ✓ WEG-Beratung ✓ BAFA-Förderung. Kostenlose Erstberatung!",
+    localInfo: "Köln als größte Stadt in NRW hat einen enormen Altbaubestand, insbesondere in den beliebten Veedeln. Energetische Sanierung steigert hier nicht nur die Effizienz, sondern auch den Immobilienwert erheblich.",
+    neighborhoods: ["Ehrenfeld", "Nippes", "Lindenthal", "Sülz", "Deutz", "Mülheim", "Porz", "Rodenkirchen"]
+  },
+  {
+    id: "moenchengladbach",
+    name: "Mönchengladbach",
+    region: "Kreisfreie Stadt",
+    distance: "ca. 30 km",
+    population: "261.000",
+    description: "Für Hausbesitzer in Mönchengladbach biete ich umfassende Energieberatung mit Fokus auf wirtschaftliche Sanierungskonzepte. Die Stadt am Niederrhein hat viele Einfamilienhäuser und Siedlungen aus den 50er-70er Jahren, die ideal für Wärmepumpen-Nachrüstung geeignet sind.",
+    highlights: [
+      "Spezialist für 50er-70er Jahre Häuser",
+      "Wärmepumpen-Eignungsprüfung",
+      "Wirtschaftlichkeitsberechnung inklusive",
+      "Regionale Förderprogramme kennen"
+    ],
+    seoTitle: "Energieberater Mönchengladbach | Energieausweis & Förderung | Lenz",
+    seoMeta: "Energieberatung in Mönchengladbach vom Experten. ✓ Energieausweise ✓ Wärmepumpen-Check ✓ iSFP ✓ Bis 70% Förderung. Jetzt Termin anfragen!",
+    localInfo: "Mönchengladbach bietet als zweigeteilte Stadt mit Gladbach und Rheydt einen vielfältigen Gebäudebestand. Besonders die Siedlungen der Nachkriegszeit bieten großes Einsparpotenzial.",
+    neighborhoods: ["Gladbach", "Rheydt", "Wickrath", "Giesenkirchen", "Hardt", "Odenkirchen"]
+  },
+  {
+    id: "leverkusen",
+    name: "Leverkusen",
+    region: "Kreisfreie Stadt",
+    distance: "ca. 35 km",
+    population: "164.000",
+    description: "Als Ihr Energieberater für Leverkusen unterstütze ich Sie bei allen Fragen zur energetischen Sanierung. Die Industriestadt zwischen Köln und Düsseldorf hat einen hohen Anteil an Werkssiedlungen und Nachkriegsbauten mit erheblichem Modernisierungsbedarf.",
+    highlights: [
+      "Erfahrung mit Werkssiedlungs-Architektur",
+      "Serielle Sanierungskonzepte",
+      "Förderberatung für Siedlungsmodernisierung",
+      "Koordination bei Nachbarschaftsprojekten"
+    ],
+    seoTitle: "Energieberater Leverkusen | Energieausweis & iSFP | Lenz",
+    seoMeta: "Zertifizierter Energieberater in Leverkusen. ✓ Energieausweise ✓ Sanierungsfahrplan ✓ BAFA-Förderung ✓ Werkssiedlungs-Expertise. Jetzt anfragen!",
+    localInfo: "Leverkusen ist geprägt von seiner Industriegeschichte mit charakteristischen Werkssiedlungen. Diese bieten durch ihre einheitliche Bauweise ideale Voraussetzungen für wirtschaftliche Sanierungskonzepte.",
+    neighborhoods: ["Wiesdorf", "Opladen", "Schlebusch", "Quettingen", "Küppersteg", "Manfort"]
+  },
+  {
+    id: "langenfeld",
+    name: "Langenfeld",
+    region: "Kreis Mettmann",
+    distance: "ca. 18 km",
+    population: "59.000",
+    description: "Für Immobilienbesitzer in Langenfeld biete ich professionelle Energieberatung direkt vor Ort. Die Stadt zwischen Düsseldorf und Köln zeichnet sich durch hochwertige Wohnlagen mit vielen Einfamilienhäusern aus, die von energetischer Modernisierung profitieren.",
+    highlights: [
+      "Expertise für gehobene Wohnlagen",
+      "Wärmepumpen-Beratung für EFH",
+      "Photovoltaik-Kombinationskonzepte",
+      "Schnelle Terminvergabe garantiert"
+    ],
+    seoTitle: "Energieberater Langenfeld | Energieausweis & Sanierung | Lenz",
+    seoMeta: "Energieberatung in Langenfeld vom zertifizierten Experten. ✓ Energieausweis ✓ iSFP ✓ Wärmepumpe ✓ BAFA-Förderung. Kostenlose Erstberatung!",
+    localInfo: "Langenfeld liegt verkehrsgünstig zwischen Düsseldorf und Köln und bietet attraktive Wohnlagen. Die gut erhaltenen Einfamilienhäuser der 70er-90er Jahre eignen sich hervorragend für energetische Modernisierung.",
+    neighborhoods: ["Langenfeld-Mitte", "Richrath", "Reusrath", "Immigrath", "Berghausen"]
+  },
+  {
+    id: "monheim",
+    name: "Monheim am Rhein",
+    region: "Kreis Mettmann",
+    distance: "ca. 15 km",
+    population: "43.000",
+    description: "Als Energieberater für Monheim am Rhein kenne ich die lokalen Gegebenheiten. Die dynamische Stadt am Rhein investiert stark in Klimaschutz – als Hausbesitzer können Sie von attraktiven Förderprogrammen und meiner Expertise profitieren.",
+    highlights: [
+      "Kenntnis lokaler Klimaschutzprogramme",
+      "Erfahrung mit Rheinlage-Immobilien",
+      "Beratung für Neubaugebiete",
+      "Schnelle Vor-Ort-Termine möglich"
+    ],
+    seoTitle: "Energieberater Monheim am Rhein | Energieausweis & Förderung | Lenz",
+    seoMeta: "Ihr Energieberater für Monheim am Rhein. ✓ Energieausweise ✓ iSFP ✓ Lokale Förderprogramme ✓ BAFA-Förderung. Jetzt beraten lassen!",
+    localInfo: "Monheim am Rhein ist eine der finanzkräftigsten Kommunen Deutschlands und investiert stark in Nachhaltigkeit. Die Stadt bietet attraktive lokale Förderprogramme zusätzlich zu Bundes- und Landesförderung.",
+    neighborhoods: ["Monheim-Mitte", "Baumberg", "Hitdorf"]
+  },
+  {
+    id: "dormagen",
+    name: "Dormagen",
+    region: "Rhein-Kreis Neuss",
+    distance: "ca. 20 km",
+    population: "65.000",
+    description: "Für Hausbesitzer in Dormagen biete ich maßgeschneiderte Energieberatung. Die Stadt zwischen Düsseldorf und Köln hat einen interessanten Mix aus historischem Ortskern und modernen Wohngebieten, für die ich individuelle Sanierungskonzepte entwickle.",
+    highlights: [
+      "Beratung für Alt- und Neubauten",
+      "Erfahrung im Rhein-Kreis Neuss",
+      "Hydraulischer Abgleich für Bestandsheizungen",
+      "Komplette Förderabwicklung inklusive"
+    ],
+    seoTitle: "Energieberater Dormagen | Energieausweis & iSFP | Lenz",
+    seoMeta: "Zertifizierte Energieberatung in Dormagen. ✓ Energieausweise ✓ Sanierungsfahrplan ✓ Heizlastberechnung ✓ BAFA-Förderung. Termin anfragen!",
+    localInfo: "Dormagen liegt strategisch günstig zwischen Düsseldorf und Köln am Rhein. Die Stadt bietet sowohl historische Bausubstanz im Ortskern Zons als auch moderne Wohngebiete mit Sanierungspotenzial.",
+    neighborhoods: ["Dormagen-Mitte", "Zons", "Nievenheim", "Horrem", "Hackenbroich", "Gohr"]
+  },
+  {
+    id: "kaarst",
+    name: "Kaarst",
+    region: "Rhein-Kreis Neuss",
+    distance: "ca. 15 km",
+    population: "44.000",
+    description: "Als Energieberater für Kaarst bin ich Ihr lokaler Ansprechpartner für energetische Sanierung. Die familienfreundliche Stadt im Rhein-Kreis Neuss hat viele Einfamilienhäuser aus den 70er-90er Jahren, die sich ideal für Wärmepumpen und Dämmmaßnahmen eignen.",
+    highlights: [
+      "Spezialist für EFH der 70er-90er Jahre",
+      "Wärmepumpen-Eignungsprüfung",
+      "Beratung für junge Familien",
+      "Kurze Wege zu Terminen in Kaarst"
+    ],
+    seoTitle: "Energieberater Kaarst | Energieausweis & Wärmepumpe | Lenz",
+    seoMeta: "Energieberatung in Kaarst vom Experten. ✓ Energieausweis ✓ Wärmepumpen-Check ✓ iSFP ✓ Bis 70% Förderung sichern. Jetzt anfragen!",
+    localInfo: "Kaarst ist eine beliebte Wohnstadt im Rhein-Kreis Neuss mit vielen Einfamilienhäusern. Die typische Bebauung der 70er-90er Jahre bietet ideale Voraussetzungen für wirtschaftliche Sanierung mit Wärmepumpe.",
+    neighborhoods: ["Kaarst-Mitte", "Büttgen", "Holzbüttgen", "Vorst"]
   }
 ];
