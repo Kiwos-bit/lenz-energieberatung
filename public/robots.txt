@@ -1,0 +1,24 @@
+# Robots.txt für Lenz Energieberatung
+# https://www.lenzenergieberatung.de
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.lenzenergieberatung.de/sitemap.xml
+
+# Crawl-Delay für höfliches Crawling
+Crawl-delay: 1
+
+# Blockiere unwichtige Ressourcen
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /node_modules/
+
+# Erlaube wichtige Ressourcen für Rendering
+Allow: /manifest.json
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp

@@ -1,16 +1,22 @@
 {
   "name": "Lenz Energieberatung Düsseldorf",
   "short_name": "Lenz Energie",
-  "description": "Zertifizierte Energieberatung in Düsseldorf - Markus Lenz, BAFA-gelisteter Energieeffizienz-Experte",
+  "description": "Zertifizierter Energieberater in Düsseldorf. Energieausweise, iSFP Sanierungsfahrplan, BAFA-Förderberatung & Heizlastberechnung.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#059669",
-  "lang": "de",
+  "lang": "de-DE",
   "categories": ["business", "utilities"],
   "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "/markus-lenz-portrait.jpg",
       "sizes": "512x512",

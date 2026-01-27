@@ -1,140 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <!-- Homepage -->
   <url>
-    <loc>https://lenzenergieberatung.de/</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- Leistungen Übersicht -->
   <url>
-    <loc>https://lenzenergieberatung.de/leistungen</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/leistungen</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
   <!-- Service Detail Seiten -->
   <url>
-    <loc>https://lenzenergieberatung.de/leistungen/energieausweis</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/leistungen/energieausweis</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/leistungen/isfp</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/leistungen/isfp</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/leistungen/heizlast</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/leistungen/heizlast</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/leistungen/abgleich</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/leistungen/abgleich</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/leistungen/beg-em</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/leistungen/beg-em</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <!-- Über mich -->
   <url>
-    <loc>https://lenzenergieberatung.de/ueber-mich</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/ueber-mich</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <!-- Ablauf -->
   <url>
-    <loc>https://lenzenergieberatung.de/ablauf</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/ablauf</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <!-- Blog -->
   <url>
-    <loc>https://lenzenergieberatung.de/blog</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/blog</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Blog Posts -->
   <url>
-    <loc>https://lenzenergieberatung.de/blog/beg-foerderung-2025</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/blog/energieberatung-duesseldorf-foerderung</loc>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/blog/energieausweis-pflicht-nrw</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/blog/geg-2026-heizungsgesetz</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/blog/isfp-sanierungsfahrplan</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/blog/waermepumpe-altbau-erfahrungen</loc>
+    <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+  <url>
+    <loc>https://www.lenzenergieberatung.de/blog/energieausweis-pflicht</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lenzenergieberatung.de/blog/isfp-bonus-erklaert</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- FAQ -->
   <url>
-    <loc>https://lenzenergieberatung.de/faq</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/faq</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <!-- Kontakt -->
   <url>
-    <loc>https://lenzenergieberatung.de/kontakt</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/kontakt</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Legal Pages -->
+
+  <!-- Rechtliches -->
   <url>
-    <loc>https://lenzenergieberatung.de/impressum</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/impressum</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/datenschutz</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/datenschutz</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
   <url>
-    <loc>https://lenzenergieberatung.de/agb</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://www.lenzenergieberatung.de/agb</loc>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
 </urlset>

@@ -1,0 +1,7 @@
+# Lenz Energieberatung Security Policy
+# https://www.lenzenergieberatung.de
+
+Contact: mailto:info@lenzenergieberatung.de
+Expires: 2026-12-31T23:59:00.000Z
+Preferred-Languages: de, en
+Canonical: https://www.lenzenergieberatung.de/.well-known/security.txt
