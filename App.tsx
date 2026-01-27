@@ -427,7 +427,7 @@ const App: React.FC = () => {
     <div className="min-h-screen">
       <Navigation />
 
-      <main>
+      <main id="main-content" role="main">
         <Routes>
           <Route path="/" element={
             <>

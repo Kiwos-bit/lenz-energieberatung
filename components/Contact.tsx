@@ -25,6 +25,10 @@ const Contact: React.FC = () => {
       if (response.ok) {
         setStatus('success');
         (e.target as HTMLFormElement).reset();
+        // Plausible Analytics: Conversion-Event tracken
+        if (typeof window !== 'undefined' && (window as any).plausible) {
+          (window as any).plausible('Kontaktformular', { props: { service: data.service as string } });
+        }
       } else {
         const error = await response.json();
         throw new Error(error.error || 'Etwas ist schiefgelaufen.');

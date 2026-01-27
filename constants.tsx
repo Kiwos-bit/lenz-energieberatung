@@ -185,6 +185,203 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Markus Lenz",
     category: "Förderung",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: "hydraulischer-abgleich-erklaert",
+    title: "Hydraulischer Abgleich: Was ist das und warum ist er Pflicht?",
+    excerpt: "Der hydraulische Abgleich ist Voraussetzung für Förderungen und spart bis zu 15% Heizkosten. So funktioniert er.",
+    content: `
+      <p class="lead">Bei fast jeder Heizungsförderung taucht er auf: der hydraulische Abgleich. Doch was verbirgt sich dahinter, und warum spart er bares Geld?</p>
+
+      <h3>Das Problem: Ungleichmäßige Wärmeverteilung</h3>
+      <p>Kennen Sie das? Das Bad im Erdgeschoss wird glühend heiß, während das Kinderzimmer unterm Dach kaum warm wird. Das Heizungswasser nimmt immer den Weg des geringsten Widerstands – und das sind die Heizkörper nahe der Heizung.</p>
+
+      <h3>Die Lösung: Abgleich der Durchflussmengen</h3>
+      <p>Beim hydraulischen Abgleich werden die Ventile an jedem Heizkörper so eingestellt, dass genau die richtige Wassermenge ankommt. Dafür braucht es:</p>
+      <ul>
+        <li><strong>Heizlastberechnung:</strong> Wie viel Wärme braucht jeder Raum?</li>
+        <li><strong>Voreinstellbare Thermostatventile:</strong> Oft müssen alte Ventile getauscht werden.</li>
+        <li><strong>Pumpenanpassung:</strong> Die Pumpe muss auf den neuen Druck eingestellt werden.</li>
+      </ul>
+
+      <h3>Verfahren A vs. Verfahren B</h3>
+      <p>Es gibt zwei Methoden:</p>
+      <ul>
+        <li><strong>Verfahren A (vereinfacht):</strong> Berechnung nach Heizkörpergröße und Raumgröße. Für die meisten Einfamilienhäuser ausreichend.</li>
+        <li><strong>Verfahren B (detailliert):</strong> Raumweise Heizlastberechnung nach DIN 12831. Pflicht bei Wärmepumpen-Förderung!</li>
+      </ul>
+
+      <div class="bg-amber-50 p-6 rounded-2xl my-8 border border-amber-100">
+        <h4 class="text-amber-800 font-bold mb-2">Förder-Pflicht beachten:</h4>
+        <p class="text-amber-700 m-0">Ohne hydraulischen Abgleich nach Verfahren B gibt es keine BAFA-Förderung für Wärmepumpen. Der Nachweis ist Pflicht!</p>
+      </div>
+
+      <h3>Kosten und Ersparnis</h3>
+      <p>Ein hydraulischer Abgleich kostet je nach Hausgröße 400-800€. Die Heizkosten-Ersparnis liegt bei 5-15% pro Jahr. Oft rechnet sich die Maßnahme schon nach 2-3 Jahren.</p>
+    `,
+    date: "20.01.2026",
+    author: "Markus Lenz",
+    category: "Technik",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: "photovoltaik-waermepumpe-kombination",
+    title: "Photovoltaik und Wärmepumpe kombinieren: Die perfekte Symbiose",
+    excerpt: "Mit PV-Strom die Wärmepumpe betreiben und unabhängig werden. Rechenbeispiele und Tipps zur Dimensionierung.",
+    content: `
+      <p class="lead">Die Kombination aus Photovoltaik und Wärmepumpe ist der Königsweg zur Energieunabhängigkeit. Doch wie groß muss die Anlage sein, und lohnt sich ein Speicher?</p>
+
+      <h3>Warum passt PV so gut zur Wärmepumpe?</h3>
+      <p>Eine Wärmepumpe erzeugt aus 1 kWh Strom etwa 3-4 kWh Wärme (je nach Jahresarbeitszahl). Wenn dieser Strom vom eigenen Dach kommt, heizen Sie quasi kostenlos.</p>
+
+      <h3>Dimensionierung: So groß sollte die PV-Anlage sein</h3>
+      <p>Als Faustregel für ein Einfamilienhaus:</p>
+      <ul>
+        <li><strong>Nur Haushaltsstrom:</strong> 5-7 kWp</li>
+        <li><strong>Mit Wärmepumpe:</strong> 10-15 kWp</li>
+        <li><strong>Mit Wärmepumpe + E-Auto:</strong> 15-20 kWp</li>
+      </ul>
+
+      <h3>Der Eigenverbrauch ist entscheidend</h3>
+      <p>Ohne Speicher liegt der Eigenverbrauch bei 20-30%. Mit einem Batteriespeicher (ca. 10 kWh) steigt er auf 60-70%. Der Rest wird eingespeist – aktuell für etwa 8 Cent/kWh.</p>
+
+      <div class="bg-emerald-50 p-6 rounded-2xl my-8 border border-emerald-100">
+        <h4 class="text-emerald-800 font-bold mb-2">Rechenbeispiel für Düsseldorf:</h4>
+        <p class="text-emerald-700 m-0">10 kWp PV-Anlage erzeugt ca. 9.000 kWh/Jahr. Wärmepumpe braucht ca. 4.000 kWh/Jahr. Mit intelligentem Energiemanagement können Sie 50% des WP-Stroms selbst erzeugen.</p>
+      </div>
+
+      <h3>Förderung: PV und Wärmepumpe zusammen</h3>
+      <p>Die Wärmepumpe wird über die BEG gefördert (bis 70%). PV-Anlagen erhalten aktuell keine direkte Förderung mehr, profitieren aber von der Mehrwertsteuer-Befreiung und attraktiven Einspeisevergütungen.</p>
+    `,
+    date: "18.01.2026",
+    author: "Markus Lenz",
+    category: "Technik",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: "foerdermittel-2026-uebersicht",
+    title: "Fördermittel 2026: Komplette Übersicht BAFA, KfW und NRW",
+    excerpt: "Welche Förderungen gibt es aktuell für Sanierung, Heizungstausch und Energieberatung? Der große Überblick.",
+    content: `
+      <p class="lead">Die Förderlandschaft ändert sich ständig. Hier finden Sie alle aktuellen Programme für energetische Sanierung – Stand Januar 2026.</p>
+
+      <h3>1. BAFA-Förderung für Einzelmaßnahmen (BEG EM)</h3>
+      <p>Die Bundesförderung für effiziente Gebäude – Einzelmaßnahmen umfasst:</p>
+      <ul>
+        <li><strong>Heizungstausch:</strong> 30-70% je nach Technologie und Boni</li>
+        <li><strong>Dämmung:</strong> 15% (+ 5% mit iSFP)</li>
+        <li><strong>Fenster/Türen:</strong> 15% (+ 5% mit iSFP)</li>
+        <li><strong>Anlagentechnik:</strong> 15% (+ 5% mit iSFP)</li>
+      </ul>
+
+      <h3>2. KfW-Kredite und Zuschüsse</h3>
+      <p>Die KfW bietet zinsgünstige Kredite für:</p>
+      <ul>
+        <li><strong>Komplettsanierung zum Effizienzhaus:</strong> Bis 150.000€ Kredit + Tilgungszuschuss</li>
+        <li><strong>Klimafreundlicher Neubau:</strong> Bis 100.000€ Kredit</li>
+        <li><strong>Altersgerechter Umbau:</strong> Bis 50.000€ Kredit</li>
+      </ul>
+
+      <h3>3. NRW-Landesförderung (progres.nrw)</h3>
+      <p>Zusätzlich zur Bundesförderung bietet NRW:</p>
+      <ul>
+        <li><strong>Batteriespeicher:</strong> 150€/kWh</li>
+        <li><strong>Wallboxen:</strong> Bis 1.000€</li>
+        <li><strong>Beratung:</strong> Zuschuss zur Energieberatung</li>
+      </ul>
+
+      <div class="bg-blue-50 p-6 rounded-2xl my-8 border border-blue-100">
+        <h4 class="text-blue-800 font-bold mb-2">Wichtig: Kumulierung prüfen!</h4>
+        <p class="text-blue-700 m-0">Viele Programme lassen sich kombinieren, aber nicht alle. Als Ihr Energieberater prüfe ich die optimale Förderstrategie für Ihr Projekt.</p>
+      </div>
+
+      <h3>4. Energieberatung selbst wird gefördert</h3>
+      <p>Die Energieberatung für Wohngebäude (EBW) wird mit bis zu <strong>80% gefördert</strong>. Ein iSFP für ein Einfamilienhaus kostet Sie so nur wenige hundert Euro.</p>
+    `,
+    date: "15.01.2026",
+    author: "Markus Lenz",
+    category: "Förderung",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: "daemmung-altbau-reihenfolge",
+    title: "Dämmung im Altbau: Womit anfangen? Die richtige Reihenfolge",
+    excerpt: "Dach, Fassade oder Keller zuerst? So priorisieren Sie Dämmmaßnahmen wirtschaftlich sinnvoll.",
+    content: `
+      <p class="lead">Eine Komplettsanierung ist teuer. Doch welche Dämmmaßnahme bringt am meisten, wenn das Budget begrenzt ist?</p>
+
+      <h3>Die Faustregel: Wärme steigt nach oben</h3>
+      <p>Bis zu 30% der Heizwärme geht über ein ungedämmtes Dach verloren. Daher gilt meist:</p>
+      <ol>
+        <li><strong>Oberste Geschossdecke / Dach:</strong> Höchste Priorität, oft günstig</li>
+        <li><strong>Kellerdecke:</strong> Relativ einfach, guter Komfortgewinn</li>
+        <li><strong>Fenster:</strong> Falls noch Einfachverglasung vorhanden</li>
+        <li><strong>Fassade:</strong> Teuerste Maßnahme, aber größte Fläche</li>
+      </ol>
+
+      <h3>Die "Sowieso-Kosten" nutzen</h3>
+      <p>Steht ohnehin eine Fassadenrenovierung an? Dann ist der Aufpreis für eine Dämmung gering. Das Gleiche gilt für:</p>
+      <ul>
+        <li>Dachneueindeckung → Zwischensparrendämmung</li>
+        <li>Neuer Putz → Wärmedämmverbundsystem (WDVS)</li>
+        <li>Kellerausbau → Deckendämmung von unten</li>
+      </ul>
+
+      <div class="bg-emerald-50 p-6 rounded-2xl my-8 border border-emerald-100">
+        <h4 class="text-emerald-800 font-bold mb-2">Mein Praxis-Tipp:</h4>
+        <p class="text-emerald-700 m-0">Beginnen Sie mit der obersten Geschossdecke. 100-150€/m² inklusive Material und Verlegung – und sofort spürbar weniger Heizkosten im Winter, weniger Hitze im Sommer.</p>
+      </div>
+
+      <h3>Vorsicht: Luftdichtheit beachten</h3>
+      <p>Wer nur die Fenster tauscht, ohne die Wand zu dämmen, riskiert Schimmel. Die neue Dichtheit der Fenster verhindert den "natürlichen" Luftaustausch. Die Lösung: Kontrollierte Wohnraumlüftung oder bewusstes Stoßlüften.</p>
+
+      <h3>Der iSFP zeigt die beste Reihenfolge</h3>
+      <p>Im individuellen Sanierungsfahrplan (iSFP) berechne ich für Ihr Haus, welche Maßnahmen in welcher Reihenfolge am meisten bringen – energetisch und wirtschaftlich.</p>
+    `,
+    date: "12.01.2026",
+    author: "Markus Lenz",
+    category: "Sanierung",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: "schimmel-nach-sanierung-vermeiden",
+    title: "Schimmel nach der Sanierung vermeiden: 5 häufige Fehler",
+    excerpt: "Neue Fenster, aber plötzlich Schimmel? So verhindern Sie feuchtebedingte Schäden nach energetischer Sanierung.",
+    content: `
+      <p class="lead">Es klingt paradox: Nach der teuren Sanierung bildet sich Schimmel. Doch dieses Problem ist vermeidbar, wenn man die Bauphysik versteht.</p>
+
+      <h3>Warum entsteht Schimmel nach Sanierungen?</h3>
+      <p>Schimmel braucht Feuchtigkeit. Bei alten, undichten Fenstern wurde ständig "mitgelüftet". Nach dem Einbau dichter Fenster bleibt die Feuchtigkeit im Raum – und kondensiert an der kältesten Stelle: der ungedämmten Außenwand.</p>
+
+      <h3>Fehler 1: Nur Fenster tauschen</h3>
+      <p>Wenn Sie dreifach verglaste Fenster in eine ungedämmte Wand setzen, ist plötzlich nicht mehr das Fenster die kälteste Stelle, sondern die Leibung daneben. Dort kondensiert dann die Raumfeuchte.</p>
+
+      <h3>Fehler 2: Innendämmung ohne Dampfbremse</h3>
+      <p>Innendämmung ist kritisch. Ohne fachgerechte Dampfbremse dringt Feuchtigkeit in die Dämmung ein und kondensiert an der kalten Außenwand dahinter.</p>
+
+      <h3>Fehler 3: Lüftungskonzept vergessen</h3>
+      <p>Nach einer Sanierung auf Effizienzhaus-Niveau ist ein Lüftungskonzept nach DIN 1946-6 Pflicht. Optionen:</p>
+      <ul>
+        <li>Fensterlüfter (dezentral)</li>
+        <li>Abluftanlage</li>
+        <li>Zentrale Lüftung mit Wärmerückgewinnung</li>
+      </ul>
+
+      <div class="bg-rose-50 p-6 rounded-2xl my-8 border border-rose-100">
+        <h4 class="text-rose-800 font-bold mb-2">Warnsignal Kondenswasser:</h4>
+        <p class="text-rose-700 m-0">Wenn sich regelmäßig Kondenswasser an den Fensterscheiben bildet, ist die Raumluftfeuchtigkeit zu hoch. Handeln Sie, bevor Schimmel entsteht!</p>
+      </div>
+
+      <h3>Fehler 4: Wärmebrücken ignorieren</h3>
+      <p>Rollladenkästen, Heizkörpernischen, Balkonanschlüsse – hier entstehen Wärmebrücken, an denen es kalt bleibt. Diese Stellen müssen bei jeder Sanierung mitbedacht werden.</p>
+
+      <h3>Fehler 5: Bautrocknung vergessen</h3>
+      <p>Nach Putz- und Estricharbeiten steckt viel Wasser im Bau. Heizen und Lüften Sie intensiv – oder setzen Sie Bautrockner ein, bevor Sie einziehen.</p>
+    `,
+    date: "08.01.2026",
+    author: "Markus Lenz",
+    category: "Sanierung",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&q=80&w=1200"
   }
 ];
 

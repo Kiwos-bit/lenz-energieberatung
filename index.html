@@ -24,6 +24,12 @@
     <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="preload" href="/markus-lenz-portrait.jpg" as="image" type="image/jpeg">
 
+    <!-- Analytics: Plausible (DSGVO-konform, cookieless) -->
+    <!-- Hinweis: Ersetze 'lenzenergieberatung.de' mit deiner Plausible-Domain nach Registrierung auf plausible.io -->
+    <script defer data-domain="lenzenergieberatung.de" src="https://plausible.io/js/script.js"></script>
+    <!-- Conversion Tracking für Kontaktformular (Custom Events) -->
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.lenzenergieberatung.de/">
@@ -174,6 +180,8 @@
     <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-slate-50 text-slate-900">
+    <!-- Skip Link für Tastaturnavigation (Accessibility) -->
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     <script>
