@@ -448,3 +448,111 @@ export const FAQS: FAQItem[] = [
     answer: "Nein, als gelisteter Energieeffizienz-Experte übernehmen wir die komplette technische Antragstellung bei der BAFA oder KfW für Sie."
   }
 ];
+
+// Lokale Städte für Landingpages
+export interface LocalCity {
+  id: string;
+  name: string;
+  region: string;
+  distance: string;
+  population: string;
+  description: string;
+  highlights: string[];
+  seoTitle: string;
+  seoMeta: string;
+  localInfo: string;
+  neighborhoods: string[];
+}
+
+export const LOCAL_CITIES: LocalCity[] = [
+  {
+    id: "neuss",
+    name: "Neuss",
+    region: "Rhein-Kreis Neuss",
+    distance: "ca. 10 km",
+    population: "153.000",
+    description: "Als Ihr Energieberater für Neuss biete ich Ihnen professionelle Beratung direkt vor Ort. Die historische Stadt am Rhein mit ihrem vielfältigen Gebäudebestand – von Altbauten in der Innenstadt bis zu Einfamilienhäusern in Holzheim – profitiert besonders von individueller Energieberatung.",
+    highlights: [
+      "Kurze Anfahrt von Düsseldorf (ca. 15 Min.)",
+      "Erfahrung mit Altbauten im Neusser Stadtkern",
+      "Kenntnis lokaler Förderprogramme im Rhein-Kreis",
+      "Flexible Termine auch abends möglich"
+    ],
+    seoTitle: "Energieberater Neuss | Energieausweis & iSFP | Lenz Energieberatung",
+    seoMeta: "Zertifizierter Energieberater in Neuss. ✓ Energieausweise ✓ iSFP Sanierungsfahrplan ✓ BAFA-Förderung ✓ Vor-Ort-Beratung. Jetzt Termin vereinbaren!",
+    localInfo: "Neuss gehört zum Rhein-Kreis Neuss und liegt direkt gegenüber von Düsseldorf. Die Stadt bietet eine Mischung aus historischer Bausubstanz und modernen Wohngebieten.",
+    neighborhoods: ["Neuss-Innenstadt", "Holzheim", "Norf", "Grimlinghausen", "Gnadental", "Reuschenberg"]
+  },
+  {
+    id: "ratingen",
+    name: "Ratingen",
+    region: "Kreis Mettmann",
+    distance: "ca. 12 km",
+    population: "87.000",
+    description: "Für Hausbesitzer in Ratingen biete ich umfassende Energieberatung mit kurzen Wegen. Die Stadt im Kreis Mettmann zeichnet sich durch viele Einfamilienhäuser aus den 60er bis 80er Jahren aus – ideale Kandidaten für energetische Sanierung mit Wärmepumpe.",
+    highlights: [
+      "Spezialisiert auf Häuser der 60er-80er Jahre",
+      "Erfahrung mit Wärmepumpen-Nachrüstung",
+      "Schnelle Terminvergabe für Ratingen",
+      "Komplette Förderberatung inklusive"
+    ],
+    seoTitle: "Energieberater Ratingen | Energieausweis & Förderung | Lenz",
+    seoMeta: "Ihr Energieberater für Ratingen. ✓ Energieausweise ✓ Wärmepumpen-Beratung ✓ iSFP ✓ Bis 70% Förderung sichern. Kostenlose Erstberatung!",
+    localInfo: "Ratingen liegt nordöstlich von Düsseldorf und ist bekannt für seine hohe Lebensqualität. Viele Siedlungen aus der Nachkriegszeit bieten großes Sanierungspotenzial.",
+    neighborhoods: ["Ratingen-Mitte", "Lintorf", "Hösel", "Homberg", "Tiefenbroich", "West"]
+  },
+  {
+    id: "hilden",
+    name: "Hilden",
+    region: "Kreis Mettmann",
+    distance: "ca. 15 km",
+    population: "56.000",
+    description: "In Hilden unterstütze ich Sie bei allen Fragen zur Energieeffizienz. Die kompakte Stadt im Kreis Mettmann hat einen hohen Anteil an Reihenhäusern und Doppelhaushälften, bei denen sich energetische Sanierung besonders lohnt.",
+    highlights: [
+      "Expertise bei Reihenhäusern und DHH",
+      "Hydraulischer Abgleich für Bestandsheizungen",
+      "iSFP für schrittweise Sanierung",
+      "Persönliche Betreuung von Antrag bis Umsetzung"
+    ],
+    seoTitle: "Energieberater Hilden | Sanierungsfahrplan & Energieausweis",
+    seoMeta: "Energieberatung in Hilden vom zertifizierten Experten. ✓ Energieausweis ✓ iSFP ✓ Heizlastberechnung ✓ BAFA-Förderung. Jetzt beraten lassen!",
+    localInfo: "Hilden ist eine der am dichtesten besiedelten Städte Deutschlands. Die typische Bebauung mit Reihenhäusern bietet ideale Voraussetzungen für wirtschaftliche Sanierungskonzepte.",
+    neighborhoods: ["Hilden-Mitte", "Hilden-Ost", "Hilden-Süd", "Hilden-Nord"]
+  },
+  {
+    id: "erkrath",
+    name: "Erkrath",
+    region: "Kreis Mettmann",
+    distance: "ca. 10 km",
+    population: "44.000",
+    description: "Als Energieberater für Erkrath kenne ich die besonderen Anforderungen der Häuser im bergischen Raum. Von Alt-Erkrath bis Hochdahl – ich berate Sie individuell zu Dämmung, Heizungstausch und Fördermöglichkeiten.",
+    highlights: [
+      "Erfahrung mit bergischem Baustil",
+      "Beratung für Hanglage-Häuser",
+      "Energieausweise für Verkauf & Vermietung",
+      "Koordination mit lokalen Handwerkern"
+    ],
+    seoTitle: "Energieberater Erkrath | Energieausweis & iSFP vom Experten",
+    seoMeta: "Zertifizierte Energieberatung in Erkrath. ✓ Energieausweise ✓ Sanierungsfahrplan ✓ Wärmepumpen-Check ✓ Förderung sichern. Termin anfragen!",
+    localInfo: "Erkrath liegt am Übergang vom Rheinland ins Bergische Land. Die topografische Lage stellt besondere Anforderungen an die energetische Planung.",
+    neighborhoods: ["Alt-Erkrath", "Hochdahl", "Unterfeldhaus", "Millrath", "Trills"]
+  },
+  {
+    id: "meerbusch",
+    name: "Meerbusch",
+    region: "Rhein-Kreis Neuss",
+    distance: "ca. 12 km",
+    population: "58.000",
+    description: "Für die gehobenen Wohnlagen in Meerbusch biete ich maßgeschneiderte Energieberatung. Ob Villa in Büderich oder Einfamilienhaus in Osterath – ich entwickle Sanierungskonzepte, die Werterhalt und Energieeffizienz verbinden.",
+    highlights: [
+      "Erfahrung mit hochwertigen Immobilien",
+      "Denkmalschutz-konforme Lösungen",
+      "Werterhaltende Sanierungskonzepte",
+      "Diskretion und Termintreue garantiert"
+    ],
+    seoTitle: "Energieberater Meerbusch | Premium Energieberatung | Lenz",
+    seoMeta: "Energieberatung in Meerbusch für anspruchsvolle Immobilien. ✓ iSFP ✓ Energieausweis ✓ Werterhaltende Sanierung ✓ BAFA-Förderung. Jetzt anfragen!",
+    localInfo: "Meerbusch ist eine der wohlhabendsten Städte Deutschlands mit hochwertiger Bausubstanz. Energetische Sanierung muss hier besonders sorgfältig geplant werden, um den Charakter der Immobilien zu erhalten.",
+    neighborhoods: ["Büderich", "Osterath", "Strümp", "Lank-Latum", "Bösinghoven", "Ilverich"]
+  }
+];

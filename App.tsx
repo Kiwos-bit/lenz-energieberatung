@@ -11,7 +11,8 @@ import Footer from './components/Footer';
 import ServiceDetailView from './components/ServiceDetailView';
 import LegalView from './components/LegalView';
 import BlogView from './components/BlogView';
-import { CONTACT_INFO, SERVICES, BLOG_POSTS, FAQS } from './constants';
+import { CONTACT_INFO, SERVICES, BLOG_POSTS, FAQS, LOCAL_CITIES } from './constants';
+import LocalLandingPage from './components/LocalLandingPage';
 import { ShieldCheck, Award, CheckCircle2, BadgeCheck, MessageCircle } from 'lucide-react';
 
 const DEFAULT_TITLE = "Energieberatung Düsseldorf | Energieausweis & iSFP vom Experten - Lenz";
@@ -66,6 +67,13 @@ const App: React.FC = () => {
       };
       title = legalTitles[type];
       description = `Rechtliche Informationen zur Lenz Energieberatung Düsseldorf - ${type.toUpperCase()}. NAP-konforme Angaben nach TMG.`;
+    } else if (path.startsWith('/energieberatung-')) {
+      const cityId = path.replace('/energieberatung-', '');
+      const city = LOCAL_CITIES.find(c => c.id === cityId);
+      if (city) {
+        title = city.seoTitle;
+        description = city.seoMeta;
+      }
     }
 
     document.title = title;
@@ -363,6 +371,12 @@ const App: React.FC = () => {
       breadcrumbItems.push({ name: "Datenschutz", url: `${BASE_URL}/datenschutz` });
     } else if (path === '/agb') {
       breadcrumbItems.push({ name: "AGB", url: `${BASE_URL}/agb` });
+    } else if (path.startsWith('/energieberatung-')) {
+      const cityId = path.replace('/energieberatung-', '');
+      const city = LOCAL_CITIES.find(c => c.id === cityId);
+      if (city) {
+        breadcrumbItems.push({ name: `Energieberatung ${city.name}`, url: `${BASE_URL}${path}` });
+      }
     }
 
     if (breadcrumbItems.length > 1) {
@@ -459,6 +473,7 @@ const App: React.FC = () => {
           <Route path="/impressum" element={<LegalView type="impressum" />} />
           <Route path="/datenschutz" element={<LegalView type="datenschutz" />} />
           <Route path="/agb" element={<LegalView type="agb" />} />
+          <Route path="/energieberatung-:cityId" element={<LocalLandingPage />} />
         </Routes>
         <Contact />
       </main>
