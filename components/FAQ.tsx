@@ -37,7 +37,7 @@ const FAQ: React.FC = () => {
   }, []);
 
   return (
-    <section id="faq" className="py-24 bg-slate-50" aria-labelledby="faq-heading">
+    <section id="faq" className="py-24 bg-slate-50 content-visibility-auto" aria-labelledby="faq-heading">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-base font-bold text-emerald-600 uppercase tracking-widest mb-3">Fragen & Antworten</h2>

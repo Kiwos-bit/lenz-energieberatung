@@ -5,7 +5,7 @@ import { CONTACT_INFO } from '../constants';
 
 const About: React.FC = () => {
   return (
-    <section id="ueber-mich" className="py-24 bg-white overflow-hidden relative" aria-labelledby="about-heading">
+    <section id="ueber-mich" className="py-24 bg-white overflow-hidden relative content-visibility-auto" aria-labelledby="about-heading">
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-slate-50 to-transparent opacity-50" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

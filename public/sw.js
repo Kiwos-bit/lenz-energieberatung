@@ -5,6 +5,8 @@ const STATIC_ASSETS = [
   '/index.html',
   '/manifest.json',
   '/markus-lenz-portrait.jpg',
+  '/logo.svg',
+  '/sitemap.xml',
 ];
 
 // Install event - cache static assets
@@ -36,13 +38,28 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Only handle same-origin requests
-  if (url.origin !== location.origin) {
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
     return;
   }
 
-  // Skip non-GET requests
-  if (request.method !== 'GET') {
+  // Handle Unsplash images (cache for offline fallback)
+  if (url.hostname.includes('unsplash.com')) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(async (cache) => {
+        const cached = await cache.match(request);
+        if (cached) return cached;
+
+        const response = await fetch(request);
+        if (response.ok) cache.put(request, response.clone());
+        return response;
+      })
+    );
+    return;
+  }
+
+  // Only handle same-origin requests for other assets
+  if (url.origin !== location.origin) {
     return;
   }
 

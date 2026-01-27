@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -8,12 +8,22 @@ import About from './components/About';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ServiceDetailView from './components/ServiceDetailView';
-import LegalView from './components/LegalView';
-import BlogView from './components/BlogView';
 import { CONTACT_INFO, SERVICES, BLOG_POSTS, FAQS, LOCAL_CITIES } from './constants';
-import LocalLandingPage from './components/LocalLandingPage';
 import { ShieldCheck, Award, CheckCircle2, BadgeCheck, MessageCircle } from 'lucide-react';
+
+// Lazy load non-critical route components for better initial load performance
+const ServiceDetailView = lazy(() => import('./pages/ServiceDetailPage'));
+const LegalView = lazy(() => import('./pages/LegalPage'));
+const BlogListView = lazy(() => import('./pages/BlogPage'));
+const BlogPostView = lazy(() => import('./pages/BlogPostPage'));
+const LocalLandingPage = lazy(() => import('./components/LocalLandingPage'));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin" />
+  </div>
+);
 
 const DEFAULT_TITLE = "Energieberatung Düsseldorf | Energieausweis & iSFP vom Experten - Lenz";
 const DEFAULT_META = "Zertifizierter Energieberater in Düsseldorf. ✓ Energieausweise ✓ iSFP Sanierungsfahrplan ✓ BAFA-Förderberatung ✓ Heizlastberechnung. Jetzt kostenlos beraten lassen!";
@@ -467,13 +477,13 @@ const App: React.FC = () => {
               <FAQ />
             </>
           } />
-          <Route path="/leistungen/:id" element={<ServiceDetailView />} />
-          <Route path="/blog" element={<BlogView />} />
-          <Route path="/blog/:id" element={<BlogView />} />
-          <Route path="/impressum" element={<LegalView type="impressum" />} />
-          <Route path="/datenschutz" element={<LegalView type="datenschutz" />} />
-          <Route path="/agb" element={<LegalView type="agb" />} />
-          <Route path="/energieberatung-:cityId" element={<LocalLandingPage />} />
+          <Route path="/leistungen/:serviceId" element={<Suspense fallback={<PageLoader />}><ServiceDetailView /></Suspense>} />
+          <Route path="/blog" element={<Suspense fallback={<PageLoader />}><BlogListView /></Suspense>} />
+          <Route path="/blog/:postId" element={<Suspense fallback={<PageLoader />}><BlogPostView /></Suspense>} />
+          <Route path="/impressum" element={<Suspense fallback={<PageLoader />}><LegalView /></Suspense>} />
+          <Route path="/datenschutz" element={<Suspense fallback={<PageLoader />}><LegalView /></Suspense>} />
+          <Route path="/agb" element={<Suspense fallback={<PageLoader />}><LegalView /></Suspense>} />
+          <Route path="/energieberatung-:cityId" element={<Suspense fallback={<PageLoader />}><LocalLandingPage /></Suspense>} />
         </Routes>
         <Contact />
       </main>

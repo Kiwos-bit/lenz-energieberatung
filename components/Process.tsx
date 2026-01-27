@@ -4,7 +4,7 @@ import { PROCESS_STEPS } from '../constants';
 
 const Process: React.FC = () => {
   return (
-    <section id="ablauf" className="py-24 bg-slate-900 text-white overflow-hidden relative">
+    <section id="ablauf" className="py-24 bg-slate-900 text-white overflow-hidden relative content-visibility-auto">
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
          <div className="absolute top-10 left-10 w-64 h-64 border-4 border-white rounded-full" />
          <div className="absolute bottom-10 right-10 w-96 h-96 border-4 border-white rounded-full" />

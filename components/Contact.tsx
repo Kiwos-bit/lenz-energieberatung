@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="kontakt" className="py-24 bg-white">
+    <section id="kontakt" className="py-24 bg-white content-visibility-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* ... (left side remains the same) */}
