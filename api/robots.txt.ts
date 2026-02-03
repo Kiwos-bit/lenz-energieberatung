@@ -4,15 +4,29 @@ export const config = {
 
 export default function handler() {
   const robotsTxt = `# Lenz Energieberatung - Robots.txt
-# Aktualisiert: Januar 2026
+# Aktualisiert: Februar 2026
 
 User-agent: *
 Allow: /
 
-# XML Sitemap
+# Sitemap
 Sitemap: https://lenzenergieberatung.de/sitemap.xml
 
-# Optimiert für Google, Bing, und andere Suchmaschinen`;
+# Crawl-Delay für höfliches Crawling
+Crawl-delay: 1
+
+# Blockiere unwichtige Ressourcen
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /node_modules/
+
+# Erlaube wichtige Ressourcen für Rendering
+Allow: /manifest.json
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp`;
 
   return new Response(robotsTxt, {
     headers: {
